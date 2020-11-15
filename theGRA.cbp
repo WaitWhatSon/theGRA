@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="theGRA" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/theGRA" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="c:/pdcurs34/win32" />
+					<Add directory="c:/pdcurs34" />
+					<Add directory="include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="c:/pdcurs34/win32" />
+					<Add directory="c:/pdcurs34" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="C:/pdcurs34/wincon/pdcurses.a" />
+					<Add directory="c:/pdcurs34/win32" />
+					<Add directory="c:/pdcurs34" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/theGRA" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/MapsLoader.h" />
+		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/View.h" />
+		<Unit filename="include/ViewGraphic.h" />
+		<Unit filename="include/ViewText.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/MapsLoader.cpp" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/View.cpp" />
+		<Unit filename="src/ViewGraphic.cpp" />
+		<Unit filename="src/ViewText.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

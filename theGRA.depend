@@ -1,0 +1,95 @@
+# depslib dependency file v1.0
+1604092174 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+	<stdio.h>
+	<curses.h>
+	"Menu.h"
+	"Game.h"
+	"View.h"
+	"ViewText.h"
+	"ViewGraphic.h"
+
+1549075040 c:\pdcurs34\curses.h
+	<stdarg.h>
+	<stddef.h>
+	<stdio.h>
+	<wchar.h>
+	<stdbool.h>
+
+1604110403 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\player.h
+	<stdio.h>
+	<curses.h>
+
+1604112528 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
+	"Player.h"
+	"View.h"
+	"Game.h"
+	<stdio.h>
+	<curses.h>
+	<iostream>
+
+1603299940 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\map.cpp
+	"Map.h"
+	<fstream>
+
+1603300006 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\map.h
+
+1603789099 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\mapsloader.h
+
+1603738285 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\controler.cpp
+	"Controler.h"
+
+1603738285 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\controler.h
+
+1604147628 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\mapsloader.cpp
+	"MapsLoader.h"
+	<iostream>
+	<fstream>
+
+1603739298 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\model.cpp
+	"Model.h"
+
+1603739673 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\model.h
+
+1603760359 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
+	"View.h"
+	<stdio.h>
+	<iostream>
+
+1603760302 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
+	<curses.h>
+
+1603787881 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+	"ViewText.h"
+	"View.h"
+	<curses.h>
+	<iostream>
+
+1603787885 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
+	"View.h"
+	<curses.h>
+
+1603742204 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
+
+1603742205 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
+	"Menu.h"
+
+1604146790 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+	<curses.h>
+	"Game.h"
+	"Player.h"
+	"MapsLoader.h"
+	<iostream>
+
+1604146930 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
+	<curses.h>
+	"Player.h"
+	"MapsLoader.h"
+	"View.h"
+
+1603753225 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewgraphic.h
+	"View.h"
+
+1603753406 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
+	"ViewGraphic.h"
+	<iostream>
+
