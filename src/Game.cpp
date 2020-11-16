@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "MapsLoader.h"
+#include "IntroImage.h"
 
 #include <iostream>
 
@@ -44,12 +45,18 @@ void Game::create_window()
 
     loader->load_maps(maps);
 
-    load_current_map();
+    //load_current_map(); // wykomentowane temp
 }
 
 void Game::play_game()
 {
+    IntroImage* intro = new IntroImage();// temp
+    intro->display(gameWindow); // temp
     while(player->get_move()!='x')
+    {
+     ;              // temp
+    }
+    /*while(player->get_move()!='x')
     {
         if (map_changed)
         {
@@ -62,7 +69,7 @@ void Game::play_game()
         view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
         wrefresh(gameWindow);
 
-    }
+    }*/
     endwin();
 }
 
