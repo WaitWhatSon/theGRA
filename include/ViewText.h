@@ -9,6 +9,7 @@ class ViewText: public View
     public:
         /** Default constructor */
         ViewText();
+        void clockUpdate(WINDOW*, char, char);
         void test();
         void mapFragmentUpdate(WINDOW*, int, int, char);
         void playerPositionUpdate(WINDOW*, int, int, char);

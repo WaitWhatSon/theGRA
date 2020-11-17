@@ -1,7 +1,10 @@
 # depslib dependency file v1.0
-1605481108 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1605642374 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	<stdio.h>
 	<curses.h>
+	<unistd.h>
+	<iostream>
+	<thread>
 	"Menu.h"
 	"Game.h"
 	"View.h"
@@ -50,21 +53,21 @@
 
 1603739673 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\model.h
 
-1603760359 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
+1605644615 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
 	"View.h"
 	<stdio.h>
 	<iostream>
 
-1603760302 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
+1605644586 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
 	<curses.h>
 
-1603787881 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+1605645894 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
 	"ViewText.h"
 	"View.h"
 	<curses.h>
 	<iostream>
 
-1603787885 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
+1605644645 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
 	"View.h"
 	<curses.h>
 
@@ -73,13 +76,16 @@
 1603742205 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 
-1605481261 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1605646097 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	<curses.h>
 	"Game.h"
 	"Player.h"
 	"MapsLoader.h"
 	"IntroImage.h"
 	<iostream>
+	<unistd.h>
+	<stdio.h>
+	<thread>
 
 1604146930 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<curses.h>
@@ -97,7 +103,9 @@
 1605481139 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\introimage.h
 	<curses.h>
 
-1605481204 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\introimage.cpp
+1605487676 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\introimage.cpp
 	"IntroImage.h"
 	<curses.h>
+	<iostream>
+	<fstream>
 

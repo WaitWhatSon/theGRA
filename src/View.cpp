@@ -15,6 +15,11 @@ void View::test()
     cout << "no elo";
 }
 
+void View::clockUpdate(WINDOW* window, char decSec, char sec)
+{
+
+}
+
 void View::mapFragmentUpdate(WINDOW* window, int x, int y, char current_map_char)
 {
 

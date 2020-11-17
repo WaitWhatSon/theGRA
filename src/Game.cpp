@@ -5,6 +5,21 @@
 #include "IntroImage.h"
 
 #include <iostream>
+#include <unistd.h>
+#include <stdio.h>
+#include <thread>
+
+void foo(View* view, WINDOW* window)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        for  (int j = 0; j < 10; j++)
+        {
+            usleep(1000000); // czekaj sekunde
+            view->clockUpdate(window, i+48, j+48); // aktualizuj zegar
+        }
+    }
+}
 
 int Game::current_map = 0;
 bool Game::map_changed = false;
@@ -45,18 +60,16 @@ void Game::create_window()
 
     loader->load_maps(maps);
 
-    //load_current_map(); // wykomentowane temp
+    load_current_map();
 }
 
 void Game::play_game()
 {
-    IntroImage* intro = new IntroImage();// temp
-    intro->display(gameWindow); // temp
+    //IntroImage* intro = new IntroImage();// temp
+    //intro->display(gameWindow); // temp
+    std::thread thread_obj(foo, view, gameWindow);
+
     while(player->get_move()!='x')
-    {
-     ;              // temp
-    }
-    /*while(player->get_move()!='x')
     {
         if (map_changed)
         {
@@ -69,7 +82,8 @@ void Game::play_game()
         view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
         wrefresh(gameWindow);
 
-    }*/
+    }
+    thread_obj.join();
     endwin();
 }
 

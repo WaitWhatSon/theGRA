@@ -9,6 +9,7 @@ class View
         /** Default constructor */
         View();
         virtual void test();
+        virtual void clockUpdate(WINDOW*, char, char);
         virtual void mapFragmentUpdate(WINDOW*, int, int, char);
         virtual void playerPositionUpdate(WINDOW*, int, int, char);
         virtual void mapDisplay();

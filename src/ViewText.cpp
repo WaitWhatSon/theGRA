@@ -15,6 +15,13 @@ void ViewText::test()
     cout << "tekstowy\n";
 }
 
+void ViewText::clockUpdate(WINDOW* window, char decSec, char sec)
+{
+        mvwaddch(window, 16, 70, decSec);
+        mvwaddch(window, 16, 71, sec);
+        wrefresh(window);
+}
+
 void ViewText::mapFragmentUpdate(WINDOW* window, int x, int y, char current_map_char)
 {
     mvwaddch(window, y, x, current_map_char);
