@@ -34,30 +34,24 @@ int main()
             view_pointer = new ViewText();
             window = new WindowText();
         }
-        else
+            /** NIEZAIMPLEMENTOWANE **/
+        /*else
         {
             view_pointer = new ViewGraphic();
-            window = new WindowText(); // temp
-        }
+            window = new WindowGraphic();
+        }*/
 
         menu = new Menu(window, &mode, &quit);
         menu->run_menu();
 
-        view_pointer->test();
-
-        Game* game = new Game(view_pointer, window);
-        game->setup_window();
-        game->play_game();
-
+        if (!quit)
+        {
+            Game* game = new Game(view_pointer, window);
+            game->setup_window();
+            game->play_game();
+        }
     }
 }
-/*
-
-1) meni
-
-*/
-
-
 
 
 

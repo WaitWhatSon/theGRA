@@ -12,7 +12,11 @@ class WindowText: public Window
 
         int get_ch();
         int add_ch(int x, int y, char c);
+        int add_str(int x, int y, const char* s);
+        int add_str_colour(int x, int y, const char* s, int colour);
         int refresh();
+        void window_clear();
+        void const display_logo();
 
         /** Default destructor */
         virtual ~WindowText();

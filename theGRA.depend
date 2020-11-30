@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1606694139 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1606705213 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	<stdio.h>
 	<curses.h>
 	<unistd.h>
@@ -78,15 +78,17 @@
 	"View.h"
 	<curses.h>
 
-1606691215 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
+1606715358 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
 	<curses.h>
 	"Window.h"
 
-1606696622 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
+1606715684 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 	"Window.h"
 	<stdio.h>
 	<curses.h>
+	<fstream>
+	<string.h>
 
 1606696526 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	<curses.h>
@@ -141,21 +143,21 @@
 	<string>
 	<vector>
 
-1606695723 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
+1606709482 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
 
-1606695521 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowtext.h
+1606708897 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowtext.h
 	"Window.h"
 	<curses.h>
 	<clocale>
 
-1606695541 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
+1606708999 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
 	"Window.h"
 
-1606695490 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
+1606709094 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
 	"WindowText.h"
 	<curses.h>
 
-1606696036 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
+1606700701 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
 	"WindowGraphic.h"
 
 1606695998 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
