@@ -1,5 +1,4 @@
 #include "MapsLoader.h"
-#include <iostream>
 #include <fstream>
 
 MapsLoader::MapsLoader()
@@ -23,11 +22,8 @@ void MapsLoader::load_maps(char*** map_pointer)
 
         char znak;
 
-        std::cout << "maps names loaded" << std::endl;
-
         for (int map_number = 0; map_number < 10; map_number++)
         {
-            std::cout << "loading map number " << map_number << std::endl;
             src = fopen (map_names[map_number], "r");
             znak = fgetc(src);
 

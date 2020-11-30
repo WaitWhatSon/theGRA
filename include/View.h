@@ -1,6 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 #include <curses.h>
+#include "Window.h"
 
 
 class View
@@ -9,10 +10,10 @@ class View
         /** Default constructor */
         View();
         virtual void test();
-        virtual void clockUpdate(WINDOW*, char, char);
-        virtual void mapFragmentUpdate(WINDOW*, int, int, char);
-        virtual void playerPositionUpdate(WINDOW*, int, int, char);
-        virtual void mapDisplay();
+        virtual void clockUpdate(Window*, char, char);
+        virtual void mapFragmentUpdate(Window*, int, int, char);
+        virtual void playerPositionUpdate(Window*, int, int, char);
+
         /** Default destructor */
         virtual ~View();
 

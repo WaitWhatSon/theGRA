@@ -45,6 +45,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Course.h" />
+		<Unit filename="include/CoursesList.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/IntroImage.h" />
 		<Unit filename="include/MapsLoader.h" />
@@ -54,6 +56,8 @@
 		<Unit filename="include/ViewGraphic.h" />
 		<Unit filename="include/ViewText.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Course.cpp" />
+		<Unit filename="src/CoursesList.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/IntroImage.cpp" />
 		<Unit filename="src/MapsLoader.cpp" />

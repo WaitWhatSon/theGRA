@@ -1,9 +1,10 @@
 #include "ViewText.h"
 #include "View.h"
+#include "Window.h"
+
+#include <clocale>
 
 #include <curses.h>
-#include <iostream>
-using namespace std;
 
 ViewText::ViewText()
 {
@@ -12,26 +13,24 @@ ViewText::ViewText()
 
 void ViewText::test()
 {
-    cout << "tekstowy\n";
+
 }
 
-void ViewText::clockUpdate(WINDOW* window, char decSec, char sec)
+void ViewText::clockUpdate(Window* window, char decSec, char sec)
 {
-        mvwaddch(window, 16, 70, decSec);
-        mvwaddch(window, 16, 71, sec);
-        wrefresh(window);
+        window->add_ch(16, 70, decSec);
+        window->add_ch(16, 71, sec);
+        window->refresh();
 }
 
-void ViewText::mapFragmentUpdate(WINDOW* window, int x, int y, char current_map_char)
+void ViewText::mapFragmentUpdate(Window* window, int x, int y, char current_map_char)
 {
-    mvwaddch(window, y, x, current_map_char);
-    //cout << "map x: " << x << " y: " << y << "\n";  //debug
+    window->add_ch(y, x, current_map_char);
 }
 
-void ViewText::playerPositionUpdate(WINDOW* window, int x, int y, char player_character)
+void ViewText::playerPositionUpdate(Window* window, int x, int y, char player_character)
 {
-    mvwaddch(window, y, x, player_character);
-    //cout << "player x: " << x << " y: " << y << "\n";  //debug
+    window->add_ch(y, x, player_character);
 }
 
 ViewText::~ViewText()

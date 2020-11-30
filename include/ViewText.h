@@ -9,10 +9,11 @@ class ViewText: public View
     public:
         /** Default constructor */
         ViewText();
-        void clockUpdate(WINDOW*, char, char);
+        void clockUpdate(Window*, char, char);
+        void mapFragmentUpdate(Window*, int, int, char);
+        void playerPositionUpdate(Window*, int, int, char);
+
         void test();
-        void mapFragmentUpdate(WINDOW*, int, int, char);
-        void playerPositionUpdate(WINDOW*, int, int, char);
 
         /** Default destructor */
         virtual ~ViewText();

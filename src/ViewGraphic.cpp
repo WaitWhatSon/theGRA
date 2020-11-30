@@ -1,7 +1,6 @@
 #include "ViewGraphic.h"
 
 #include <iostream>
-using namespace std;
 
 ViewGraphic::ViewGraphic()
 {
@@ -10,7 +9,7 @@ ViewGraphic::ViewGraphic()
 
 void ViewGraphic::test()
 {
-    cout << "graficzny\n";
+
 }
 
 ViewGraphic::~ViewGraphic()

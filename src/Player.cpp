@@ -5,17 +5,17 @@
 #include <curses.h>
 #include <iostream>
 
-Player::Player (WINDOW * win, int yc, int xc, char c, char** cmap)
+#include "Window.h"
+
+Player::Player (Window * _win, int _yc, int _xc, char _c, char** _cmap)
 {
-    curwin = win;
-    y = yc;
-    x = xc;
-    old_y = yc;
-    old_x = xc;
-    getmaxyx(curwin, height, width);
-    keypad(curwin, true);
-    character = c;
-    current_map = cmap;
+    win = _win;
+    y = _yc;
+    x = _xc;
+    old_y = _yc;
+    old_x = _xc;
+    character = _c;
+    current_map = _cmap;
 }
 
 bool Player::check_if_not_wall(char character)
@@ -30,7 +30,6 @@ void Player::check_if_change_map(int next_x, int next_y)
 {
     if (next_x == -1)
     {
-        std::cout << "elo x < 0";
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][3];
 
@@ -38,7 +37,6 @@ void Player::check_if_change_map(int next_x, int next_y)
     }
     else if (next_x == 77)
     {
-        std::cout << "elo x > 0";
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][1];
 
@@ -46,7 +44,6 @@ void Player::check_if_change_map(int next_x, int next_y)
     }
     else if (next_y == -1)
     {
-        std::cout << "elo y < 0";
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][0];
 
@@ -54,7 +51,6 @@ void Player::check_if_change_map(int next_x, int next_y)
     }
     else if (next_y == 15)
     {
-        std::cout << "elo y > 0";
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][2];
 
@@ -102,9 +98,61 @@ void Player::move_right()
     }
 }
 
+void Player::next_floor()
+{
+    if ((x == 8 && y == 7) || (x == 61 && y == 11 ))
+    {
+        int new_map;
+        if (Game::current_map == 4) // niski parter
+        {
+            new_map = 0;
+        }
+        else if (Game::current_map == 0) // parter
+        {
+            new_map = 6;
+        }
+        else if (Game::current_map == 6) // pierwsze pietro
+        {
+            new_map = 8;
+        }
+        else
+        {
+            return;
+        }
+        Game::map_changed = true;
+        Game::current_map = new_map;
+    }
+}
+
+void Player::prev_floor()
+{
+    if ((x == 10 && y == 7) || (x == 63 && y == 11 ))
+    {
+        int new_map;
+        if (Game::current_map == 0) // parter
+        {
+            new_map = 4;
+        }
+        else if (Game::current_map == 6) // pierwsze pietro
+        {
+            new_map = 0;
+        }
+        else if (Game::current_map == 8) // drugie pietro
+        {
+            new_map = 6;
+        }
+        else
+        {
+            return;
+        }
+        Game::map_changed = true;
+        Game::current_map = new_map;
+    }
+}
+
 int Player::get_move()
 {
-    int choice = wgetch(curwin);
+    int choice = win->get_ch();
     switch(choice)
     {
         case KEY_UP:
@@ -118,6 +166,12 @@ int Player::get_move()
             break;
         case KEY_RIGHT:
             move_right();
+            break;
+        case 'w':     //
+            next_floor();
+            break;
+        case 's':     //
+            prev_floor();
             break;
         default:
             break;

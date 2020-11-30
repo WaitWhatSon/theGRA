@@ -44,7 +44,7 @@ void IntroImage::display(WINDOW* gameWindow)
     }
     src = fopen ("files/intro_image.txt", "r");
 
-    std::cout << "intro file loading" << std::endl;
+    //std::cout << "intro file loading" << std::endl;
 
     znak = fgetc(src);
 

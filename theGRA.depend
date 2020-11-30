@@ -1,15 +1,20 @@
 # depslib dependency file v1.0
-1605642374 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1606694139 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	<stdio.h>
 	<curses.h>
 	<unistd.h>
 	<iostream>
 	<thread>
+	<clocale>
+	<vector>
 	"Menu.h"
 	"Game.h"
 	"View.h"
 	"ViewText.h"
 	"ViewGraphic.h"
+	"CoursesList.h"
+	"Window.h"
+	"WindowText.h"
 
 1549075040 c:\pdcurs34\curses.h
 	<stdarg.h>
@@ -18,17 +23,19 @@
 	<wchar.h>
 	<stdbool.h>
 
-1604110403 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\player.h
+1606694404 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\player.h
+	"Window.h"
 	<stdio.h>
 	<curses.h>
 
-1604112528 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
+1606696670 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
 	"Player.h"
 	"View.h"
 	"Game.h"
 	<stdio.h>
 	<curses.h>
 	<iostream>
+	"Window.h"
 
 1603299940 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\map.cpp
 	"Map.h"
@@ -43,9 +50,8 @@
 
 1603738285 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\controler.h
 
-1605484841 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\mapsloader.cpp
+1606696231 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\mapsloader.cpp
 	"MapsLoader.h"
-	<iostream>
 	<fstream>
 
 1603739298 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\model.cpp
@@ -53,30 +59,36 @@
 
 1603739673 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\model.h
 
-1605644615 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
+1606696685 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
 	"View.h"
 	<stdio.h>
-	<iostream>
 
-1605644586 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
+1606695732 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
 	<curses.h>
+	"Window.h"
 
-1605645894 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+1606696707 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
 	"ViewText.h"
 	"View.h"
+	"Window.h"
+	<clocale>
 	<curses.h>
-	<iostream>
 
-1605644645 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
+1606694527 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
 	"View.h"
 	<curses.h>
 
-1603742204 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
+1606691215 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
+	<curses.h>
+	"Window.h"
 
-1603742205 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
+1606696622 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
+	"Window.h"
+	<stdio.h>
+	<curses.h>
 
-1605646097 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1606696526 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	<curses.h>
 	"Game.h"
 	"Player.h"
@@ -84,28 +96,68 @@
 	"IntroImage.h"
 	<iostream>
 	<unistd.h>
-	<stdio.h>
 	<thread>
+	<clocale>
 
-1604146930 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
+1606693947 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<curses.h>
+	<string>
 	"Player.h"
 	"MapsLoader.h"
 	"View.h"
+	"Window.h"
 
 1603753225 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewgraphic.h
 	"View.h"
 
-1603753406 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
+1606696695 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
 	"ViewGraphic.h"
 	<iostream>
 
 1605481139 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\introimage.h
 	<curses.h>
 
-1605487676 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\introimage.cpp
+1606696584 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\introimage.cpp
 	"IntroImage.h"
 	<curses.h>
 	<iostream>
 	<fstream>
+
+1606683067 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\course.cpp
+	"Course.h"
+
+1606682204 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\course.h
+	<string>
+	<iostream>
+
+1606683790 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\courseslist.cpp
+	"CoursesList.h"
+	<fstream>
+	<cstdlib>
+	<algorithm>
+
+1606683836 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\courseslist.h
+	"Course.h"
+	<string>
+	<vector>
+
+1606695723 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
+
+1606695521 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowtext.h
+	"Window.h"
+	<curses.h>
+	<clocale>
+
+1606695541 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
+	"Window.h"
+
+1606695490 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
+	"WindowText.h"
+	<curses.h>
+
+1606696036 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
+	"WindowGraphic.h"
+
+1606695998 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
+	<Window.h>
 

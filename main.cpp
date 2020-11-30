@@ -3,39 +3,68 @@
 #include <unistd.h>
 #include <iostream>
 #include <thread>
+#include <clocale>
+#include <vector>
 
 #include "Menu.h"
 #include "Game.h"
 #include "View.h"
 #include "ViewText.h"
 #include "ViewGraphic.h"
+#include "CoursesList.h"
+#include "Window.h"
+#include "WindowText.h"
 
 using namespace std;
 
-/*void foo()
+int main()
 {
-    for (int i = 0; i < 10; i++)
+    /* mode 0 -> tekstowy, mode 1 -> graficzny */
+    int mode = 0;
+    int quit = 0;
+
+    View* view_pointer;
+    Menu* menu;
+    Window* window;
+
+    while (!quit)
     {
-        usleep(2000000);
-        cout << "elo" << endl;
+        if ( mode == 0 )
+        {
+            view_pointer = new ViewText();
+            window = new WindowText();
+        }
+        else
+        {
+            view_pointer = new ViewGraphic();
+            window = new WindowText(); // temp
+        }
+
+        menu = new Menu(window, &mode, &quit);
+        menu->run_menu();
+
+        view_pointer->test();
+
+        Game* game = new Game(view_pointer, window);
+        game->setup_window();
+        game->play_game();
+
     }
 }
+/*
+
+1) meni
+
 */
 
 
-int main()
+
+
+
+/*int main()
 {
-    View* view_pointer;
-    ViewText view;
-    view_pointer = &view;
-    view_pointer->test();
+    CoursesList* courses = new CoursesList();
 
-    Game* game = new Game(view_pointer);
-    game->create_window();
-    game->play_game();
+    return 0;
+}*/
 
-
-    /*std::thread thread_obj(foo);
-
-    thread_obj.join();*/
-}

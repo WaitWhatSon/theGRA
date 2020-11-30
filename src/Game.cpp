@@ -6,14 +6,14 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <stdio.h>
 #include <thread>
+#include <clocale>
 
-void foo(View* view, WINDOW* window)
+void foo(View* view, Window* window)
 {
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 0; i++)
     {
-        for  (int j = 0; j < 10; j++)
+        for  (int j = 0; j < 1; j++)
         {
             usleep(1000000); // czekaj sekunde
             view->clockUpdate(window, i+48, j+48); // aktualizuj zegar
@@ -24,8 +24,9 @@ void foo(View* view, WINDOW* window)
 int Game::current_map = 0;
 bool Game::map_changed = false;
 const int Game::map_change_array[10][4];
+const int Game::rooms_coordinates[13][4];
 
-Game::Game(View* view_pointer)
+Game::Game(View* view_pointer, Window* window)
 {
     view = view_pointer; // załadowanie widoku
 
@@ -40,20 +41,14 @@ Game::Game(View* view_pointer)
 			    maps[i][j] = new char[77]; // 77 znaczków poziomo
 			}
 	}
+
+	gameWindow = window;
 }
 
-void Game::create_window()
+void Game::setup_window()
 {
-    initscr();
-    noecho();
-    cbreak();
-
-    int yMax, xMax;
-    getmaxyx(stdscr, yMax, xMax);
-
-    gameWindow = newwin(yMax,xMax,0,0);
-    refresh();
-    wrefresh(gameWindow);
+    this->gameWindow->refresh();
+    //wrefresh(gameWindow);
 
     player = new Player(gameWindow, 14, 18, '@', maps[current_map]); // okno, x, y, znak, wskaznik do map
     loader = new MapsLoader();
@@ -65,10 +60,7 @@ void Game::create_window()
 
 void Game::play_game()
 {
-    //IntroImage* intro = new IntroImage();// temp
-    //intro->display(gameWindow); // temp
     std::thread thread_obj(foo, view, gameWindow);
-
     while(player->get_move()!='x')
     {
         if (map_changed)
@@ -80,7 +72,7 @@ void Game::play_game()
         view->mapFragmentUpdate(gameWindow, player->get_old_x(), player->get_old_y(),
                                 maps[current_map][player->get_old_y()][player->get_old_x()]);
         view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
-        wrefresh(gameWindow);
+        this->gameWindow->refresh();
 
     }
     thread_obj.join();
@@ -97,9 +89,15 @@ void Game::load_current_map()
             player->set_current_map(maps[current_map]);
         }
     }
+    for (int i = 0; i<13; i++)
+    {
+        if (current_map == this->rooms_coordinates[i][1])
+        {
+            view->mapFragmentUpdate(gameWindow, rooms_coordinates[i][2], rooms_coordinates[i][3], '*');
+        }
+    }
     view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
-    wrefresh(gameWindow);
-    std::cout << std::endl << "current map " << current_map << std::endl;
+    this->gameWindow->refresh();
 }
 
 Game::~Game()
