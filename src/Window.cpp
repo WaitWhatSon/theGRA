@@ -44,3 +44,19 @@ const void Window::display_logo()
 {
 
 }
+
+const void Window::display_options(int position, std::string best_player, int best_score)
+{
+
+}
+
+const void Window::controls_display()
+{
+
+}
+
+const void Window::display_quit()
+{
+
+}
+

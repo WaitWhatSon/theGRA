@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <curses.h>
+#include <string>
 #include "Window.h"
 
 
@@ -13,7 +14,7 @@ class Menu
         int position;
         int loop;
         Window* win;
-        const char * best_player;
+        std::string best_player;
         int best_score;
 
     public:
@@ -23,7 +24,6 @@ class Menu
         /** Default destructor */
         virtual ~Menu();
 
-        void display_options();
         void run_menu();
         int get_choice();
         void move_up();

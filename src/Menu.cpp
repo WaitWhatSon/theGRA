@@ -24,29 +24,10 @@ Menu::Menu(Window* _win, int* _mode, int* _quit)
     update_best_player();
 }
 
-void Menu::display_options()
-{
-    this->win->add_str(8,  10, "(P) PLAY GAME");
-    this->win->add_str(10, 10, "(M) SWITCH MODE");
-    this->win->add_str(12, 10, "(C) CONTROLS");
-    this->win->add_str(14, 10, "(X) EXIT");
-
-    this->win->add_str_colour((8 + this->position*2), 8, ">", 1);
-
-    this->win->display_logo();
-    this->win->add_str_colour(6, 16, "-----------------> TheGRA <-----------------", 1);
-
-    this->win->add_str_colour(9, 50, "--> BEST PLAYER <--", 1);
-
-    this->win->add_str(11, 50, this->best_player);
-    const char * score = (std::to_string(this->best_score)).c_str();
-    this->win->add_str(11, 50+15, score);
-}
-
 void Menu::run_menu()
 {
     this->win->window_clear();
-    this->display_options();
+    this->win->display_options(this->position, this->best_player, this->best_score);
 
     while (this->loop)
     {
@@ -56,7 +37,7 @@ void Menu::run_menu()
 
 int Menu::get_choice()
 {
-    int choice = this->win->get_ch();//wgetch(win);
+    int choice = this->win->get_ch();
     switch(choice)
     {
         case KEY_UP:
@@ -71,7 +52,7 @@ int Menu::get_choice()
             else if (this->position == 1)
                 change_mode();
             else if (this->position == 2)     //
-                controls_display();
+                this->controls_display();
             else if (this->position == 3)     //
                 quit_game();
             break;
@@ -140,35 +121,14 @@ void Menu::change_mode()
 
 void Menu::controls_display()
 {
-    this->win->window_clear();
-
-    this->win->add_str_colour(1,  26, "------> CONTROLS <------", 1);
-    this->win->add_str_colour(3,  10, "--> PLAYER CONTROLS <--", 1);
-    this->win->add_str_colour(5,  10, "move up", 1);
-    this->win->add_str_colour(5,  28+3, "UP", 2);
-    this->win->add_str_colour(6,  10, "move down", 1);
-    this->win->add_str_colour(6,  28+1, "DOWN", 2);
-    this->win->add_str_colour(7,  10, "move left", 1);
-    this->win->add_str_colour(7,  28+1, "LEFT", 2);
-    this->win->add_str_colour(8,  10, "move right", 1);
-    this->win->add_str_colour(8,  28, "RIGHT", 2);
-    this->win->add_str_colour(10, 10, "floor up", 1);
-    this->win->add_str_colour(10, 28+4, "W", 2);
-    this->win->add_str_colour(11, 10, "floor down", 1);
-    this->win->add_str_colour(11, 28+4, "S", 2);
-    this->win->add_str_colour(12, 10, "admit", 1);
-    this->win->add_str_colour(12, 28+4, "A", 2);
-    this->win->add_str_colour(14, 30, "back to menu", 1);
-    this->win->add_str_colour(14, 45, "X", 2);
-
+    this->win->controls_display();
 
     while (this->win->get_ch() != 'x')
     {
         ;
     }
     this->win->window_clear();
-    this->display_options();
-    this->win->add_str_colour((8 + this->position*2), 8, ">", 1);
+    this->win->display_options(this->position, this->best_player, this->best_score);
 }
 
 void Menu::update_best_player()
@@ -182,7 +142,7 @@ void Menu::update_best_player()
 
     while( file >> name >> score )
     {
-        best_player = name.c_str();
+        best_player = name;
         best_score = score;
     }
 

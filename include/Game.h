@@ -19,22 +19,23 @@ class Game
         Player* player;
         MapsLoader* loader;
         View* view;
+        int quit_game;
 
         static int current_map;
         static bool map_changed;
 
         static constexpr
           int map_change_array[10][4] = {//U,     R,      D,      L,
-                               /*A*/    {1,     NULL,   NULL,   NULL},   // parter, wejscie glówne
-                               /*B*/    {2,     NULL,   0,      NULL},   // budynek B
-                               /*C1*/   {NULL,  3,      1,      NULL},   // budynek C1
-                               /*C2*/   {NULL,  NULL,   NULL,   2   },   // budynek C2 (aule)
-                               /*AP0_1*/{NULL,  5,      NULL,   NULL},   // niski parter 1
-                               /*AP0_2*/{NULL,  NULL,   NULL,   4   },   // niski parter 2
-                               /*AP1_1*/{NULL,  7,      NULL,   NULL},   // pierwsze pietro 1
-                               /*AP1_2*/{NULL,  NULL,   NULL,   6   },   // pierwsze pietro 2
-                               /*AP2_1*/{NULL,  9,      NULL,   NULL},   // drugie pietro 1
-                               /*AP2_2*/{NULL,  NULL,   NULL,   8   }    // drugie pietro 2
+                               /*A*/    {1,     -1,     -1,     -1  },   // parter, wejscie glówne
+                               /*B*/    {2,     -1,     0,      -1  },   // budynek B
+                               /*C1*/   {-1,    3,      1,      -1  },   // budynek C1
+                               /*C2*/   {-1,    -1,     -1,     2   },   // budynek C2 (aule)
+                               /*AP0_1*/{-1,    5,      -1,     -1  },   // niski parter 1
+                               /*AP0_2*/{-1,    -1,     -1,     4   },   // niski parter 2
+                               /*AP1_1*/{-1,    7,      -1,     -1  },   // pierwsze pietro 1
+                               /*AP1_2*/{-1,    -1,     -1,     6   },   // pierwsze pietro 2
+                               /*AP2_1*/{-1,    9,      -1,     -1  },   // drugie pietro 1
+                               /*AP2_2*/{-1,    -1,     -1,     8   }    // drugie pietro 2
                                         };
 
         static constexpr

@@ -3,6 +3,8 @@
 #include "Window.h"
 #include <curses.h>
 #include <clocale>
+#include <string>
+#include <stdio.h>
 
 class WindowText: public Window
 {
@@ -17,6 +19,9 @@ class WindowText: public Window
         int refresh();
         void window_clear();
         void const display_logo();
+        void const display_options(int position, std::string best_player, int best_score);
+        void const controls_display();
+        void const display_quit();
 
         /** Default destructor */
         virtual ~WindowText();

@@ -32,69 +32,114 @@ void Player::check_if_change_map(int next_x, int next_y)
     {
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][3];
-
         x = 76;
     }
     else if (next_x == 77)
     {
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][1];
-
         x = 0;
     }
     else if (next_y == -1)
     {
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][0];
-
         y = 14;
     }
     else if (next_y == 15)
     {
         Game::map_changed = true;
         Game::current_map = Game::map_change_array[Game::current_map][2];
-
         y = 0;
     }
 }
 
+bool Player::check_if_not_exit(int next_x, int next_y)
+{
+    if (next_x == -1)
+    {
+        if (Game::map_change_array[Game::current_map][3] == -1)
+        {
+            this->win->display_quit();
+            return true;
+        }
+    }
+    else if (next_x == 77)
+    {
+        if (Game::map_change_array[Game::current_map][1] == -1)
+        {
+            this->win->display_quit();
+            return true;
+        }
+    }
+    else if (next_y == -1)
+    {
+        if (Game::map_change_array[Game::current_map][0] == -1)
+        {
+            this->win->display_quit();
+            return true;
+        }
+    }
+    else if (next_y == 15)
+    {
+        if (Game::map_change_array[Game::current_map][2] == -1)
+        {
+            this->win->display_quit();
+            return true;
+        }
+    }
+    return false;
+}
+
 void Player::move_up()
 {
-    check_if_change_map(x, y-1);
-    if(check_if_not_wall(current_map[y-1][x]))
+    if(!check_if_not_exit(x, y-1))
     {
-        update_xy();
-        y -= 1;
+        check_if_change_map(x, y-1);
+        if(check_if_not_wall(current_map[y-1][x]))
+        {
+            update_xy();
+            y -= 1;
+        }
     }
 }
 
 void Player::move_down()
 {
-    check_if_change_map(x, y+1);
-    if(check_if_not_wall(current_map[y+1][x]))
+    if (!check_if_not_exit(x, y+1))
     {
-        update_xy();
-        y += 1;
+        check_if_change_map(x, y+1);
+        if(check_if_not_wall(current_map[y+1][x]))
+        {
+            update_xy();
+            y += 1;
+        }
     }
 }
 
 void Player::move_left()
 {
-    check_if_change_map(x-1, y);
-    if(check_if_not_wall(current_map[y][x-1]))
+    if (!check_if_not_exit(x-1, y))
     {
-        update_xy();
-        x -= 1;
+        check_if_change_map(x-1, y);
+        if(check_if_not_wall(current_map[y][x-1]))
+        {
+            update_xy();
+            x -= 1;
+        }
     }
 }
 
 void Player::move_right()
 {
-    check_if_change_map(x+1, y);
-    if(check_if_not_wall(current_map[y][x+1]))
+    if (!check_if_not_exit(x+1, y))
     {
-        update_xy();
-        x += 1;
+        check_if_change_map(x+1, y);
+        if(check_if_not_wall(current_map[y][x+1]))
+        {
+            update_xy();
+            x += 1;
+        }
     }
 }
 

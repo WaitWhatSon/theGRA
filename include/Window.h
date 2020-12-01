@@ -1,6 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <string>
+#include <stdio.h>
 
 class Window
 {
@@ -17,6 +19,9 @@ class Window
         virtual int refresh();
         virtual void window_clear();
         virtual const void display_logo();
+        virtual const void display_options(int position, std::string best_player, int best_score);
+        virtual const void controls_display();
+        virtual const void display_quit();
 
     protected:
 

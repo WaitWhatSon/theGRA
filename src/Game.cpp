@@ -1,13 +1,13 @@
 #include <curses.h>
-#include "Game.h"
-#include "Player.h"
-#include "MapsLoader.h"
-#include "IntroImage.h"
-
 #include <iostream>
 #include <unistd.h>
 #include <thread>
 #include <clocale>
+
+#include "Game.h"
+#include "Player.h"
+#include "MapsLoader.h"
+#include "IntroImage.h"
 
 void foo(View* view, Window* window)
 {

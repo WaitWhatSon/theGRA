@@ -26,6 +26,7 @@ class Player
         Player (Window * _win, int _yc, int _xc, char _c, char** _cmap);
         bool check_if_not_wall(char character);
         void check_if_change_map(int next_x, int next_y);
+        bool check_if_not_exit(int next_x, int next_y);
         int get_move();
         int get_x();
         int get_old_x();
