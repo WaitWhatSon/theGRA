@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1606705213 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1606881462 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	<stdio.h>
 	<curses.h>
 	<unistd.h>
@@ -59,22 +59,23 @@
 
 1603739673 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\model.h
 
-1606696685 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
+1606881656 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
 	"View.h"
 	<stdio.h>
 
-1606695732 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
+1606881666 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
 	<curses.h>
 	"Window.h"
 
-1606696707 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+1606881834 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
 	"ViewText.h"
 	"View.h"
 	"Window.h"
 	<clocale>
+	<string>
 	<curses.h>
 
-1606694527 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
+1606881676 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
 	"View.h"
 	<curses.h>
 
@@ -91,7 +92,7 @@
 	<fstream>
 	<string.h>
 
-1606874351 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1606883532 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	<curses.h>
 	<iostream>
 	<unistd.h>
@@ -102,14 +103,16 @@
 	"Player.h"
 	"MapsLoader.h"
 	"IntroImage.h"
+	"CoursesList.h"
 
-1606871919 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
+1606883517 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<curses.h>
 	<string>
 	"Player.h"
 	"MapsLoader.h"
 	"View.h"
 	"Window.h"
+	"CoursesList.h"
 
 1603753225 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewgraphic.h
 	"View.h"
@@ -127,14 +130,14 @@
 	<iostream>
 	<fstream>
 
-1606683067 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\course.cpp
+1606880702 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\course.cpp
 	"Course.h"
 
-1606682204 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\course.h
+1606880585 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\course.h
 	<string>
 	<iostream>
 
-1606683790 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\courseslist.cpp
+1606882105 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\courseslist.cpp
 	"CoursesList.h"
 	<fstream>
 	<cstdlib>
@@ -159,7 +162,7 @@
 1606832606 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
 	"Window.h"
 
-1606862027 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
+1606876492 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
 	"WindowText.h"
 	<curses.h>
 

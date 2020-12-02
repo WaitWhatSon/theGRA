@@ -19,7 +19,7 @@ using namespace std;
 
 int main()
 {
-    /* mode 0 -> tekstowy, mode 1 -> graficzny */
+    // mode 0 -> tekstowy, mode 1 -> graficzny
     int mode = 0;
     int quit = 0;
 
@@ -34,12 +34,12 @@ int main()
             view_pointer = new ViewText();
             window = new WindowText();
         }
-            /** NIEZAIMPLEMENTOWANE **/
-        /*else
-        {
-            view_pointer = new ViewGraphic();
-            window = new WindowGraphic();
-        }*/
+            /// NIEZAIMPLEMENTOWANE ///
+        //else
+        //{
+        //    view_pointer = new ViewGraphic();
+        //    window = new WindowGraphic();
+        //}
 
         menu = new Menu(window, &mode, &quit);
         menu->run_menu();
@@ -54,11 +54,19 @@ int main()
 }
 
 
-
-/*int main()
+/*
+int main()
 {
     CoursesList* courses = new CoursesList();
 
-    return 0;
-}*/
+    std::cout << endl << endl << endl;
+    vector<Course> rand = courses->get_random_courses_list(1);
 
+    for (int i = 0; i < rand.size(); i++)
+    {
+        std::cout << rand[i].get_name() << endl;
+    }
+
+    return 0;
+}
+*/

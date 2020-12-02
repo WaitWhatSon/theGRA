@@ -7,6 +7,7 @@
 #include "MapsLoader.h"
 #include "View.h"
 #include "Window.h"
+#include "CoursesList.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ class Game
         int goal_y;
         int goal_map;
         int current_map;
+
+        CoursesList* allCourses;
 
         static bool map_changed;
 
@@ -62,7 +65,7 @@ class Game
         Game(View*, Window*);
         void setup_window();
         void play_game();
-        void add_points(int points);
+        void add_points(int points, bool* sth_changed);
         virtual ~Game();
 
     protected:

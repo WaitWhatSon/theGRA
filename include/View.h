@@ -13,6 +13,8 @@ class View
         virtual void clockUpdate(Window*, char, char);
         virtual void mapFragmentUpdate(Window*, int, int, char);
         virtual void playerPositionUpdate(Window*, int, int, char);
+        virtual void gameBarUpdate(Window*, int, const char*, const char*, int, int);
+        virtual void gameBar(Window*);
 
         /** Default destructor */
         virtual ~View();

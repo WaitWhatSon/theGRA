@@ -27,6 +27,16 @@ void View::playerPositionUpdate(Window* window, int x, int y, char player_charac
 
 }
 
+void View::gameBarUpdate(Window* window, int semester, const char* course_name, const char* room_number, int week, int score)
+{
+
+}
+
+void View::gameBar(Window* window)
+{
+
+}
+
 View::~View()
 {
     //dtor

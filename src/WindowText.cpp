@@ -5,6 +5,7 @@
 #define CO_2     2
 #define CO_3     3
 #define CO_4     4
+#define CO_5     5
 
 WindowText::WindowText()
 {
@@ -26,6 +27,7 @@ WindowText::WindowText()
     init_pair(CO_2, COLOR_WHITE, COLOR_BLACK);
     init_pair(CO_3, COLOR_BLACK, COLOR_WHITE);
     init_pair(CO_4, COLOR_BLACK, COLOR_RED  );
+    init_pair(CO_5, COLOR_BLACK, COLOR_GREEN);
 }
 
 WindowText::~WindowText()
@@ -126,6 +128,6 @@ const void WindowText::controls_display()
 
 const void WindowText::display_quit()
 {
-    this->add_str(16,  9, "Are you sure you want to exit PB?");
-    this->add_str_colour(16,  43, "(press X if you are sure)", 1);
+    this->add_str(17,  9, "Are you sure you want to exit PB?");
+    this->add_str_colour(17,  43, "(press X if you are sure)", 1);
 }

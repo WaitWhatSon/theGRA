@@ -26,7 +26,6 @@ bool CoursesList::load_courses_from_file()
 
     while( file >> name >> semester >> room_number )
     {
-        cout << name << " " << semester << " " << room_number << endl;
         this->add_course(name, semester, room_number);
     }
 
@@ -35,13 +34,25 @@ bool CoursesList::load_courses_from_file()
 
 }
 
+int myrandom (int i) {return std::rand()%i;}
+
 vector<Course> CoursesList::get_random_courses_list(int semester)
 {
+    vector<Course> courses;
     for (int i = 0; i < this->get_size(); i++)
     {
-
+        if (list_of_courses[i]->get_semester() == semester)
+        {
+            Course temp;
+            temp.set_name(list_of_courses[i]->get_name());
+            temp.set_room(list_of_courses[i]->get_room());
+            temp.set_semester(list_of_courses[i]->get_semester());
+            courses.push_back(temp);
+        }
     }
-    ;
+    random_shuffle (courses.begin(), courses.end(), myrandom);
+
+    return courses;
 }
 
 bool CoursesList::add_course(string name, int semester, int room)

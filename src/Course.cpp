@@ -32,3 +32,17 @@ int Course::get_room()
     return this->room;
 }
 
+void Course:: set_name(string _name)
+{
+    this->name = _name;
+}
+
+void Course::set_semester(int _semester)
+{
+    this->semester = _semester;
+}
+
+void Course::set_room(int _room)
+{
+    this->room = _room;
+}

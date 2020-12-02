@@ -23,6 +23,10 @@ class Course
         int get_semester();
         int get_room();
 
+        void set_name(string);
+        void set_semester(int);
+        void set_room(int);
+
     protected:
 
     private:

@@ -4,11 +4,13 @@
 #include <thread>
 #include <clocale>
 #include <atomic>
+#include <vector>
 
 #include "Game.h"
 #include "Player.h"
 #include "MapsLoader.h"
 #include "IntroImage.h"
+#include "CoursesList.h"
 
 std::atomic<int> x (1);
 
@@ -25,7 +27,7 @@ void foo(View* view, Window* window)
         }
     }
     view->clockUpdate(window, 0+48, 0+48);
-    window->add_str_colour(16, 70, "!!", 4);
+    window->add_str_colour(16, 72, "!!!", 4);
     window->refresh();
 }
 
@@ -51,6 +53,9 @@ Game::Game(View* view_pointer, Window* window)
 
 	gameWindow = window;
 	current_map = 0;
+	allCourses = new CoursesList();
+
+	x = true;
 }
 
 void Game::setup_window()
@@ -70,8 +75,32 @@ void Game::setup_window()
 void Game::play_game()
 {
     std::thread thread_clock(foo, view, gameWindow);
+    view->gameBar(gameWindow);
+
+    // variables for game //
+    bool sth_changed = true;
+    int semester = 0;
+    int week = 0;
+    int course = -1;
+    vector<Course> courses;
+    // ------------------ //
+
     while(x)
     {
+        if(sth_changed)
+        {
+            semester++;
+            week++;
+            course++;
+            std::cout << "meh";
+            courses = allCourses->get_random_courses_list(1);
+            std::cout << "meh2";
+            view->gameBarUpdate(gameWindow, semester, courses[course].get_name().c_str(),
+                                to_string(courses[course].get_room()).c_str(),
+                                week, player->get_player_score());
+            sth_changed = false;
+        }
+
         int player_choice = player->get_move();
         if (player_choice == 'x')
         {
@@ -86,7 +115,7 @@ void Game::play_game()
 
         if (player->goal)
         {
-            add_points(5);
+            add_points(5, &sth_changed);
         }
 
         view->mapFragmentUpdate(gameWindow, player->get_old_x(), player->get_old_y(),
@@ -120,10 +149,11 @@ void Game::load_current_map()
     this->gameWindow->refresh();
 }
 
-void Game::add_points(int points)
+void Game::add_points(int points, bool* sth_changed)
 {
     // do zrobienia sposob przyznawania punktów
     this->player->add_points(points);
+    *sth_changed = true;
 }
 
 Game::~Game()
