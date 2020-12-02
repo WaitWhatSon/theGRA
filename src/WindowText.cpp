@@ -4,6 +4,7 @@
 #define CO_1     1
 #define CO_2     2
 #define CO_3     3
+#define CO_4     4
 
 WindowText::WindowText()
 {
@@ -24,6 +25,7 @@ WindowText::WindowText()
     init_pair(CO_1, COLOR_GREEN, COLOR_BLACK);
     init_pair(CO_2, COLOR_WHITE, COLOR_BLACK);
     init_pair(CO_3, COLOR_BLACK, COLOR_WHITE);
+    init_pair(CO_4, COLOR_BLACK, COLOR_RED  );
 }
 
 WindowText::~WindowText()

@@ -7,7 +7,8 @@
 
 #include "Window.h"
 
-Player::Player (Window * _win, int _yc, int _xc, char _c, char** _cmap)
+Player::Player (Window * _win, int _yc, int _xc, char _c, char** _cmap,
+                int* _goal_x, int* _goal_y, int* _goal_map, int* _flor)
 {
     win = _win;
     y = _yc;
@@ -16,6 +17,16 @@ Player::Player (Window * _win, int _yc, int _xc, char _c, char** _cmap)
     old_x = _xc;
     character = _c;
     current_map = _cmap;
+
+    player_name = " ";
+    player_score = 0;
+
+    goal_x = _goal_x;
+    goal_y = _goal_y;
+    goal_map = _goal_map;
+    current_flor = _flor;
+
+    goal = false;
 }
 
 bool Player::check_if_not_wall(char character)
@@ -31,25 +42,25 @@ void Player::check_if_change_map(int next_x, int next_y)
     if (next_x == -1)
     {
         Game::map_changed = true;
-        Game::current_map = Game::map_change_array[Game::current_map][3];
+        *current_flor = Game::map_change_array[*current_flor][3];
         x = 76;
     }
     else if (next_x == 77)
     {
         Game::map_changed = true;
-        Game::current_map = Game::map_change_array[Game::current_map][1];
+        *current_flor = Game::map_change_array[*current_flor][1];
         x = 0;
     }
     else if (next_y == -1)
     {
         Game::map_changed = true;
-        Game::current_map = Game::map_change_array[Game::current_map][0];
+        *current_flor = Game::map_change_array[*current_flor][0];
         y = 14;
     }
     else if (next_y == 15)
     {
         Game::map_changed = true;
-        Game::current_map = Game::map_change_array[Game::current_map][2];
+        *current_flor = Game::map_change_array[*current_flor][2];
         y = 0;
     }
 }
@@ -58,7 +69,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
 {
     if (next_x == -1)
     {
-        if (Game::map_change_array[Game::current_map][3] == -1)
+        if (Game::map_change_array[*current_flor][3] == -1)
         {
             this->win->display_quit();
             return true;
@@ -66,7 +77,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     }
     else if (next_x == 77)
     {
-        if (Game::map_change_array[Game::current_map][1] == -1)
+        if (Game::map_change_array[*current_flor][1] == -1)
         {
             this->win->display_quit();
             return true;
@@ -74,7 +85,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     }
     else if (next_y == -1)
     {
-        if (Game::map_change_array[Game::current_map][0] == -1)
+        if (Game::map_change_array[*current_flor][0] == -1)
         {
             this->win->display_quit();
             return true;
@@ -82,7 +93,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     }
     else if (next_y == 15)
     {
-        if (Game::map_change_array[Game::current_map][2] == -1)
+        if (Game::map_change_array[*current_flor][2] == -1)
         {
             this->win->display_quit();
             return true;
@@ -148,15 +159,15 @@ void Player::next_floor()
     if ((x == 8 && y == 7) || (x == 61 && y == 11 ))
     {
         int new_map;
-        if (Game::current_map == 4) // niski parter
+        if (*current_flor == 4) // niski parter
         {
             new_map = 0;
         }
-        else if (Game::current_map == 0) // parter
+        else if (*current_flor == 0) // parter
         {
             new_map = 6;
         }
-        else if (Game::current_map == 6) // pierwsze pietro
+        else if (*current_flor == 6) // pierwsze pietro
         {
             new_map = 8;
         }
@@ -165,7 +176,7 @@ void Player::next_floor()
             return;
         }
         Game::map_changed = true;
-        Game::current_map = new_map;
+        *current_flor = new_map;
     }
 }
 
@@ -174,15 +185,15 @@ void Player::prev_floor()
     if ((x == 10 && y == 7) || (x == 63 && y == 11 ))
     {
         int new_map;
-        if (Game::current_map == 0) // parter
+        if (*current_flor == 0) // parter
         {
             new_map = 4;
         }
-        else if (Game::current_map == 6) // pierwsze pietro
+        else if (*current_flor == 6) // pierwsze pietro
         {
             new_map = 0;
         }
-        else if (Game::current_map == 8) // drugie pietro
+        else if (*current_flor == 8) // drugie pietro
         {
             new_map = 6;
         }
@@ -191,7 +202,7 @@ void Player::prev_floor()
             return;
         }
         Game::map_changed = true;
-        Game::current_map = new_map;
+        *current_flor = new_map;
     }
 }
 
@@ -217,6 +228,9 @@ int Player::get_move()
             break;
         case 's':     //
             prev_floor();
+            break;
+        case 'a':     //
+            check_position();
             break;
         default:
             break;
@@ -253,6 +267,31 @@ void Player::update_xy()
 void Player::set_current_map(char** cmap)
 {
     current_map = cmap;
+}
+
+void Player::add_points(int points)
+{
+    this->player_score += points;
+}
+
+int Player::get_player_score()
+{
+    return this->player_score;
+}
+
+char* Player::get_player_name()
+{
+    return this->player_name;
+}
+
+void Player::check_position()
+{
+    if (*(this->goal_map) == *(this->current_flor) &&
+        *(this->goal_x)   ==  (this->x) &&
+        *(this->goal_y)   ==  (this->y) )
+    {
+        this->goal = true;
+    }
 }
 
 Player::~Player()

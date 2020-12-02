@@ -20,8 +20,11 @@ class Game
         MapsLoader* loader;
         View* view;
         int quit_game;
+        int goal_x;
+        int goal_y;
+        int goal_map;
+        int current_map;
 
-        static int current_map;
         static bool map_changed;
 
         static constexpr
@@ -59,6 +62,7 @@ class Game
         Game(View*, Window*);
         void setup_window();
         void play_game();
+        void add_points(int points);
         virtual ~Game();
 
     protected:

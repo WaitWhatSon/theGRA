@@ -3,25 +3,32 @@
 #include <unistd.h>
 #include <thread>
 #include <clocale>
+#include <atomic>
 
 #include "Game.h"
 #include "Player.h"
 #include "MapsLoader.h"
 #include "IntroImage.h"
 
+std::atomic<int> x (1);
+
 void foo(View* view, Window* window)
 {
-    for (int i = 0; i < 0; i++)
+    for (int i = 15; i >= 0; i--)
     {
-        for  (int j = 0; j < 1; j++)
+        usleep(1000000); // czekaj sekunde
+        view->clockUpdate(window, (i/10)+48, (i%10)+48); // aktualizuj zegar
+        if(!x)
         {
-            usleep(1000000); // czekaj sekunde
-            view->clockUpdate(window, i+48, j+48); // aktualizuj zegar
+            view->clockUpdate(window, 0+48, 0+48);
+            return;
         }
     }
+    view->clockUpdate(window, 0+48, 0+48);
+    window->add_str_colour(16, 70, "!!", 4);
+    window->refresh();
 }
 
-int Game::current_map = 0;
 bool Game::map_changed = false;
 const int Game::map_change_array[10][4];
 const int Game::rooms_coordinates[13][4];
@@ -43,6 +50,7 @@ Game::Game(View* view_pointer, Window* window)
 	}
 
 	gameWindow = window;
+	current_map = 0;
 }
 
 void Game::setup_window()
@@ -50,7 +58,8 @@ void Game::setup_window()
     this->gameWindow->refresh();
     //wrefresh(gameWindow);
 
-    player = new Player(gameWindow, 14, 18, '@', maps[current_map]); // okno, x, y, znak, wskaznik do map
+    player = new Player(gameWindow, 14, 18, '@', maps[current_map],
+                        &goal_x, &goal_y, &goal_map, &current_map); // okno, x, y, znak, wskaznik do map
     loader = new MapsLoader();
 
     loader->load_maps(maps);
@@ -60,22 +69,33 @@ void Game::setup_window()
 
 void Game::play_game()
 {
-    std::thread thread_obj(foo, view, gameWindow);
-    while(player->get_move()!='x')
+    std::thread thread_clock(foo, view, gameWindow);
+    while(x)
     {
+        int player_choice = player->get_move();
+        if (player_choice == 'x')
+        {
+            x = 0;
+        }
+
         if (map_changed)
         {
             load_current_map();
             map_changed = false;
         }
 
+        if (player->goal)
+        {
+            add_points(5);
+        }
+
         view->mapFragmentUpdate(gameWindow, player->get_old_x(), player->get_old_y(),
                                 maps[current_map][player->get_old_y()][player->get_old_x()]);
         view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
-        this->gameWindow->refresh();
+        //this->gameWindow->refresh();
 
     }
-    thread_obj.join();
+    thread_clock.join();
     endwin();
 }
 
@@ -98,6 +118,12 @@ void Game::load_current_map()
     }
     view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
     this->gameWindow->refresh();
+}
+
+void Game::add_points(int points)
+{
+    // do zrobienia sposob przyznawania punktów
+    this->player->add_points(points);
 }
 
 Game::~Game()
