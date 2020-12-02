@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <curses.h>
+#include <string>
 
 class Player
 {
@@ -13,7 +14,7 @@ class Player
         char character;
         Window * win;
         char** current_map;
-        char* player_name;
+        std::string player_name;
         int player_score;
 
         int* goal_x;
@@ -44,7 +45,8 @@ class Player
         int get_old_y();
         void add_points(int points);
         int get_player_score();
-        char* get_player_name();
+        void set_name(std::string name);
+        std::string get_player_name();
         void set_current_map(char** cmap);
         void check_position();
         ~Player();

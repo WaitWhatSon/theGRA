@@ -15,9 +15,10 @@ class Menu
         int loop;
         Window* win;
         std::string best_player;
-        int best_score;
 
     public:
+        int best_score;
+
         /** Default constructor */
         Menu();
         Menu(Window* win, int* mode, int* quit);

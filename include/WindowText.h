@@ -18,6 +18,7 @@ class WindowText: public Window
         int add_str_colour(int x, int y, const char* s, int colour);
         int refresh();
         void window_clear();
+        void get_str(char* name, int i);
         void const display_logo();
         void const display_options(int position, std::string best_player, int best_score);
         void const controls_display();

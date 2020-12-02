@@ -6,6 +6,7 @@
 #define CO_3     3
 #define CO_4     4
 #define CO_5     5
+#define CO_6     6
 
 WindowText::WindowText()
 {
@@ -28,6 +29,7 @@ WindowText::WindowText()
     init_pair(CO_3, COLOR_BLACK, COLOR_WHITE);
     init_pair(CO_4, COLOR_BLACK, COLOR_RED  );
     init_pair(CO_5, COLOR_BLACK, COLOR_GREEN);
+    init_pair(CO_6, COLOR_WHITE, COLOR_RED  );
 }
 
 WindowText::~WindowText()
@@ -71,6 +73,11 @@ void WindowText::window_clear()
 {
     wclear(this->win);
     wrefresh(win);
+}
+
+void WindowText::get_str(char* name, int i)
+{
+     wgetnstr(this->win, name, i); /////////!!!!!!!!!!!!! zapis imienia i animacje zosta³y
 }
 
 const void WindowText::display_logo()

@@ -52,6 +52,28 @@ void ViewText::gameBarUpdate(Window* window, int semester, const char* course_na
     window->add_str(16, 62, score_string.c_str());
 }
 
+void ViewText::gameOver(Window* window)
+{
+    window->add_str_colour(16, 72, "!!!", 4);
+    window->add_str_colour(8, 34, "GAME OVER", 6);
+}
+
+void ViewText::playerNameChoice(Window* window)
+{
+    window->add_str_colour(5, 33, "PLAYER NAME:", 1);
+    window->add_str_colour(7, 33, ">          <", 1);
+    window->add_str_colour(9, 30, "(max 10 characters)", 2);
+}
+
+void ViewText::updatePlayerName(Window* window, std::string name)
+{
+    window->add_str_colour(7, 34, name.c_str(), 2);
+    if(name.size()<10)
+    {
+        window->add_ch(7, 34+name.size(), ' ');
+    }
+}
+
 ViewText::~ViewText()
 {
     //dtor

@@ -40,6 +40,11 @@ void Window::window_clear()
 
 }
 
+void Window::get_str(char* name, int i)
+{
+
+}
+
 const void Window::display_logo()
 {
 

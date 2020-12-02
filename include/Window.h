@@ -18,6 +18,7 @@ class Window
         virtual int add_str_colour(int x, int y, const char* s, int colour);
         virtual int refresh();
         virtual void window_clear();
+        virtual void get_str(char* name, int i);
         virtual const void display_logo();
         virtual const void display_options(int position, std::string best_player, int best_score);
         virtual const void controls_display();

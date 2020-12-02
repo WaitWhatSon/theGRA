@@ -46,7 +46,7 @@ int main()
 
         if (!quit)
         {
-            Game* game = new Game(view_pointer, window);
+            Game* game = new Game(view_pointer, window, menu->best_score);
             game->setup_window();
             game->play_game();
         }

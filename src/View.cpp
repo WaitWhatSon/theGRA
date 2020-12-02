@@ -1,6 +1,7 @@
 #include "View.h"
-#include <stdio.h>
 
+#include <stdio.h>
+#include <string>
 
 View::View()
 {
@@ -33,6 +34,21 @@ void View::gameBarUpdate(Window* window, int semester, const char* course_name, 
 }
 
 void View::gameBar(Window* window)
+{
+
+}
+
+void View::gameOver(Window* window)
+{
+
+}
+
+void View::playerNameChoice(Window* window)
+{
+
+}
+
+void View::updatePlayerName(Window* window, std::string name)
 {
 
 }

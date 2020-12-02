@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <curses.h>
 #include <iostream>
+#include <string>
+#include <cstring>
 
 #include "Window.h"
 
@@ -279,7 +281,7 @@ int Player::get_player_score()
     return this->player_score;
 }
 
-char* Player::get_player_name()
+std::string Player::get_player_name()
 {
     return this->player_name;
 }
@@ -294,6 +296,11 @@ void Player::check_position()
     {
         this->goal = false;
     }
+}
+
+void Player::set_name(std::string _name)
+{
+    this->player_name = _name;
 }
 
 Player::~Player()

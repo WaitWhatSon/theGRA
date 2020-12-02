@@ -1,7 +1,10 @@
 #ifndef VIEWTEXT_H
 #define VIEWTEXT_H
+
 #include "View.h"
+
 #include <curses.h>
+#include <string>
 
 
 class ViewText: public View
@@ -14,6 +17,9 @@ class ViewText: public View
         void playerPositionUpdate(Window*, int, int, char);
         void gameBarUpdate(Window* window, int semester, const char* course_name, const char* room_number, int week, int score);
         void gameBar(Window* window);
+        void gameOver(Window* window);
+        void playerNameChoice(Window* window);
+        void updatePlayerName(Window* window, std::string name);
 
         void test();
 

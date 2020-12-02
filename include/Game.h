@@ -26,6 +26,8 @@ class Game
         int goal_map;
         int current_map;
 
+        int best_score;
+
         CoursesList* allCourses;
 
         static bool map_changed;
@@ -62,10 +64,11 @@ class Game
                                         };
 
 
-        Game(View*, Window*);
+        Game(View*, Window*, int);
         void setup_window();
         void play_game();
         void add_points(int points, bool* sth_changed);
+        void choose_player_name();
         virtual ~Game();
 
     protected:

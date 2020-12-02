@@ -5,6 +5,8 @@
 #include <clocale>
 #include <atomic>
 #include <vector>
+#include <string>
+#include <fstream>
 
 #include "Game.h"
 #include "Player.h"
@@ -17,7 +19,7 @@ std::atomic<bool> restart_clock (1);
 
 void foo(View* view, Window* window)
 {
-    for (int i = 150; i >= 0; i--)
+    for (int i = 160; i >= 0; i--)
     {
         usleep(100000);
         view->clockUpdate(window, (i/100)+48, ((i/10)%10)+48); // aktualizuj zegar
@@ -33,7 +35,7 @@ void foo(View* view, Window* window)
         }
     }
     view->clockUpdate(window, 0+48, 0+48);
-    window->add_str_colour(16, 72, "!!!", 4);
+    view->gameOver(window);
     window->refresh();
     x = false;
 }
@@ -42,7 +44,7 @@ bool Game::map_changed = false;
 const int Game::map_change_array[10][4];
 const int Game::rooms_coordinates[13][4];
 
-Game::Game(View* view_pointer, Window* window)
+Game::Game(View* view_pointer, Window* window, int _best_score)
 {
     view = view_pointer; // załadowanie widoku
 
@@ -61,8 +63,40 @@ Game::Game(View* view_pointer, Window* window)
 	gameWindow = window;
 	current_map = 0;
 	allCourses = new CoursesList();
+	this->best_score = _best_score;
 
 	x = true;
+}
+
+void Game::choose_player_name()
+{
+    gameWindow->window_clear();
+    view->playerNameChoice(gameWindow);
+
+    int choice = '.';
+    std::string temp_name = "PLAYER";
+    view->updatePlayerName(gameWindow, temp_name);
+
+    while (choice != '\n' || temp_name.empty())
+    {
+        choice = gameWindow->get_ch();
+        if (temp_name.size() < 10)
+        {
+            if (choice >= ' ' && choice <= '{' && choice != '\\' && choice != ' ')
+            {
+                temp_name += choice;
+                view->updatePlayerName(gameWindow, temp_name);
+            }
+        }
+        if (choice == 8)
+        {
+            temp_name = temp_name.substr(0, temp_name.size()-1);
+            view->updatePlayerName(gameWindow, temp_name);
+        }
+
+    }
+
+    player->set_name(temp_name);
 }
 
 void Game::setup_window()
@@ -72,6 +106,9 @@ void Game::setup_window()
 
     player = new Player(gameWindow, 14, 18, '@', maps[current_map],
                         &goal_x, &goal_y, &goal_map, &current_map); // okno, x, y, znak, wskaznik do map
+
+    choose_player_name();
+
     loader = new MapsLoader();
 
     loader->load_maps(maps);
@@ -157,7 +194,18 @@ void Game::play_game()
 
     }
     thread_clock.join();
-    endwin();
+
+    // jeśli wynik większy niż w pliku to nadpisać
+    if (best_score < player->get_player_score())
+    {
+        std::ofstream file( "files/best_player.txt", ios::out | ios::trunc );
+        if( !file )
+            exit(-1);
+
+        file << player->get_player_name() << ' ' << player->get_player_score();
+
+        file.close();
+    }
 }
 
 void Game::load_current_map()
