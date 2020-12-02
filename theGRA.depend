@@ -28,7 +28,7 @@
 	<stdio.h>
 	<curses.h>
 
-1606874468 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
+1606887821 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
 	"Player.h"
 	"View.h"
 	"Game.h"
@@ -67,7 +67,7 @@
 	<curses.h>
 	"Window.h"
 
-1606881834 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+1606885896 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
 	"ViewText.h"
 	"View.h"
 	"Window.h"
@@ -92,13 +92,14 @@
 	<fstream>
 	<string.h>
 
-1606883532 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1606888739 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	<curses.h>
 	<iostream>
 	<unistd.h>
 	<thread>
 	<clocale>
 	<atomic>
+	<vector>
 	"Game.h"
 	"Player.h"
 	"MapsLoader.h"

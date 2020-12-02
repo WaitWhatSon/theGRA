@@ -12,23 +12,30 @@
 #include "IntroImage.h"
 #include "CoursesList.h"
 
-std::atomic<int> x (1);
+std::atomic<bool> x (1);
+std::atomic<bool> restart_clock (1);
 
 void foo(View* view, Window* window)
 {
-    for (int i = 15; i >= 0; i--)
+    for (int i = 150; i >= 0; i--)
     {
-        usleep(1000000); // czekaj sekunde
-        view->clockUpdate(window, (i/10)+48, (i%10)+48); // aktualizuj zegar
+        usleep(100000);
+        view->clockUpdate(window, (i/100)+48, ((i/10)%10)+48); // aktualizuj zegar
         if(!x)
         {
             view->clockUpdate(window, 0+48, 0+48);
             return;
         }
+        if (restart_clock)
+        {
+            i = 150;
+            restart_clock = false;
+        }
     }
     view->clockUpdate(window, 0+48, 0+48);
     window->add_str_colour(16, 72, "!!!", 4);
     window->refresh();
+    x = false;
 }
 
 bool Game::map_changed = false;
@@ -79,22 +86,45 @@ void Game::play_game()
 
     // variables for game //
     bool sth_changed = true;
-    int semester = 0;
-    int week = 0;
+    int semester = 1;
+    int week = 1;
     int course = -1;
     vector<Course> courses;
+    courses = allCourses->get_random_courses_list(semester);
     // ------------------ //
 
     while(x)
     {
         if(sth_changed)
         {
-            semester++;
-            week++;
             course++;
-            std::cout << "meh";
-            courses = allCourses->get_random_courses_list(1);
-            std::cout << "meh2";
+            if (course >= courses.size())
+            {
+                courses = allCourses->get_random_courses_list(semester);
+                course = 0;
+                week++;
+                if (week > 15)
+                {
+                    week = 1;
+                    semester++;
+                    if (semester > 5)
+                    {
+                        // GAME OVER
+                        x = false;
+                    }
+                }
+            }
+
+            for (int i = 0; i < 13; i++)
+            {
+                if (Game::rooms_coordinates[i][0] == courses[course].get_room())
+                {
+                    goal_map = Game::rooms_coordinates[i][1];
+                    goal_x = Game::rooms_coordinates[i][2];
+                    goal_y = Game::rooms_coordinates[i][3];
+                }
+            }
+
             view->gameBarUpdate(gameWindow, semester, courses[course].get_name().c_str(),
                                 to_string(courses[course].get_room()).c_str(),
                                 week, player->get_player_score());
@@ -104,7 +134,7 @@ void Game::play_game()
         int player_choice = player->get_move();
         if (player_choice == 'x')
         {
-            x = 0;
+            x = false;
         }
 
         if (map_changed)
@@ -115,7 +145,9 @@ void Game::play_game()
 
         if (player->goal)
         {
-            add_points(5, &sth_changed);
+            add_points(1, &sth_changed);
+            restart_clock = true;
+            player->goal = false;
         }
 
         view->mapFragmentUpdate(gameWindow, player->get_old_x(), player->get_old_y(),

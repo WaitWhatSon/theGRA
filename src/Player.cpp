@@ -286,11 +286,13 @@ char* Player::get_player_name()
 
 void Player::check_position()
 {
-    if (*(this->goal_map) == *(this->current_flor) &&
-        *(this->goal_x)   ==  (this->x) &&
-        *(this->goal_y)   ==  (this->y) )
+    if (*(this->goal_map) == *(this->current_flor) && *(this->goal_x) == (this->x) && *(this->goal_y) == (this->y))
     {
         this->goal = true;
+    }
+    else
+    {
+        this->goal = false;
     }
 }
 

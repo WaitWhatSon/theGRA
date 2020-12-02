@@ -37,11 +37,12 @@ void ViewText::playerPositionUpdate(Window* window, int x, int y, char player_ch
 void ViewText::gameBar(Window* window)
 {
     window->add_str_colour(15,  0, " semester: next course:       room number:  week:            score:    time: ", 5);
-    window->add_str_colour(16,  0, "|         |                  |             |                |         |   s |", 2);
+    //window->add_str_colour(16,  0, "|         |                  |             |                |         |   s |", 2);
 }
 
 void ViewText::gameBarUpdate(Window* window, int semester, const char* course_name, const char* room_number, int week, int score)
 {
+    window->add_str_colour(16,  0, "|         |                  |             |                |         |   s |", 2);
     window->add_ch(16, 2, semester+48);
     window->add_str(16, 12, course_name);
     window->add_str(16, 31, room_number);
