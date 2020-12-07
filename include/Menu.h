@@ -1,30 +1,20 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <curses.h>
-#include <string>
-#include "Window.h"
+#include <fstream>
+#include <string.h>
 
+#include "Window.h"
+#include "View.h"
 
 class Menu
 {
-    private:
-        int* mode;
-        int* quit;
-        int position;
-        int loop;
-        Window* win;
-        std::string best_player;
-
     public:
         int best_score;
 
-        /** Default constructor */
         Menu();
-        Menu(Window* win, int* mode, int* quit);
-        /** Default destructor */
+        Menu(View*, int*, int*);
         virtual ~Menu();
-
         void run_menu();
         int get_choice();
         void move_up();
@@ -38,6 +28,12 @@ class Menu
     protected:
 
     private:
+        int* mode;
+        int* quit;
+        int position;
+        int loop;
+        View* view;
+        std::string best_player;
 };
 
 #endif // MENU_H

@@ -2,10 +2,13 @@
 #define PLAYER_H
 
 #include "Window.h"
+#include "View.h"
 
 #include <stdio.h>
 #include <curses.h>
+#include <iostream>
 #include <string>
+#include <cstring>
 
 class Player
 {
@@ -13,6 +16,7 @@ class Player
         int x, y, old_x, old_y, width, height;
         char character;
         Window * win;
+        View* view;
         char** current_map;
         std::string player_name;
         int player_score;
@@ -33,7 +37,7 @@ class Player
     public:
         bool goal;
 
-        Player (Window * _win, int _yc, int _xc, char _c, char** _cmap,
+        Player (View* _view, int _yc, int _xc, char _c, char** _cmap,
                 int* _goal_x, int* _goal_y, int* _goal_map, int* _current_flor);
         bool check_if_not_wall(char character);
         void check_if_change_map(int next_x, int next_y);

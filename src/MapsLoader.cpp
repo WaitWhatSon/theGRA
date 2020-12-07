@@ -1,5 +1,4 @@
 #include "MapsLoader.h"
-#include <fstream>
 
 MapsLoader::MapsLoader()
 {

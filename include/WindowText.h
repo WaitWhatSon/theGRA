@@ -1,6 +1,8 @@
 #ifndef WINDOWTEXT_H
 #define WINDOWTEXT_H
+
 #include "Window.h"
+
 #include <curses.h>
 #include <clocale>
 #include <string>
@@ -19,10 +21,6 @@ class WindowText: public Window
         int refresh();
         void window_clear();
         void get_str(char* name, int i);
-        void const display_logo();
-        void const display_options(int position, std::string best_player, int best_score);
-        void const controls_display();
-        void const display_quit();
 
         /** Default destructor */
         virtual ~WindowText();

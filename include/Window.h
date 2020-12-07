@@ -19,10 +19,6 @@ class Window
         virtual int refresh();
         virtual void window_clear();
         virtual void get_str(char* name, int i);
-        virtual const void display_logo();
-        virtual const void display_options(int position, std::string best_player, int best_score);
-        virtual const void controls_display();
-        virtual const void display_quit();
 
     protected:
 

@@ -2,26 +2,29 @@
 #define VIEWTEXT_H
 
 #include "View.h"
+#include "Window.h"
 
 #include <curses.h>
 #include <string>
-
 
 class ViewText: public View
 {
     public:
         /** Default constructor */
         ViewText();
-        void clockUpdate(Window*, char, char);
-        void mapFragmentUpdate(Window*, int, int, char);
-        void playerPositionUpdate(Window*, int, int, char);
-        void gameBarUpdate(Window* window, int semester, const char* course_name, const char* room_number, int week, int score);
-        void gameBar(Window* window);
-        void gameOver(Window* window);
-        void playerNameChoice(Window* window);
-        void updatePlayerName(Window* window, std::string name);
-
-        void test();
+        ViewText(Window*);
+        void clockUpdate(char, char);
+        void mapFragmentUpdate(int, int, char);
+        void playerPositionUpdate(int, int, char);
+        void gameBarUpdate(int, const char*, const char*, int, int);
+        void gameBar();
+        void gameOver();
+        void playerNameChoice();
+        void updatePlayerName(std::string name);
+        void const display_logo();
+        void const display_options(int position, std::string best_player, int best_score);
+        void const controls_display();
+        void const display_quit();
 
         /** Default destructor */
         virtual ~ViewText();

@@ -1,6 +1,7 @@
 #ifndef MAPSLOADER_H
 #define MAPSLOADER_H
 
+#include <fstream>
 
 class MapsLoader
 {

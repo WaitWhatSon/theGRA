@@ -48,7 +48,6 @@
 		<Unit filename="include/Course.h" />
 		<Unit filename="include/CoursesList.h" />
 		<Unit filename="include/Game.h" />
-		<Unit filename="include/IntroImage.h" />
 		<Unit filename="include/MapsLoader.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Player.h" />
@@ -62,7 +61,6 @@
 		<Unit filename="src/Course.cpp" />
 		<Unit filename="src/CoursesList.cpp" />
 		<Unit filename="src/Game.cpp" />
-		<Unit filename="src/IntroImage.cpp" />
 		<Unit filename="src/MapsLoader.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Player.cpp" />

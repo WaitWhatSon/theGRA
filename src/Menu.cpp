@@ -1,21 +1,14 @@
 #include "Menu.h"
-#include "Window.h"
-
-#include <stdio.h>
-#include <curses.h>
-#include <fstream>
-#include <string.h>
-
 
 Menu::Menu()
 {
     //ctor
 }
 
-Menu::Menu(Window* _win, int* _mode, int* _quit)
+Menu::Menu(View* _view, int* _mode, int* _quit)
 {
     //ctor
-    this->win = _win;
+    this->view = _view;
     this->mode = _mode;
     this->quit = _quit;
     this->position = 0;
@@ -26,8 +19,8 @@ Menu::Menu(Window* _win, int* _mode, int* _quit)
 
 void Menu::run_menu()
 {
-    this->win->window_clear();
-    this->win->display_options(this->position, this->best_player, this->best_score);
+    this->view->window->window_clear();
+    this->view->display_options(this->position, this->best_player, this->best_score);
 
     while (this->loop)
     {
@@ -37,7 +30,7 @@ void Menu::run_menu()
 
 int Menu::get_choice()
 {
-    int choice = this->win->get_ch();
+    int choice = this->view->window->get_ch();
     switch(choice)
     {
         case KEY_UP:
@@ -82,9 +75,9 @@ void Menu::move_up()
     }
     else
     {
-        this->win->add_ch((8 + this->position*2), 8, ' ');
+        this->view->window->add_ch((8 + this->position*2), 8, ' ');
         this->position--;
-        this->win->add_str_colour((8 + this->position*2), 8, ">", 1);
+        this->view->window->add_str_colour((8 + this->position*2), 8, ">", 1);
     }
 }
 
@@ -96,9 +89,9 @@ void Menu::move_down()
     }
     else
     {
-        this->win->add_ch((8 + this->position*2), 8, ' ');
+        this->view->window->add_ch((8 + this->position*2), 8, ' ');
         this->position++;
-        this->win->add_str_colour((8 + this->position*2), 8, ">", 1);
+        this->view->window->add_str_colour((8 + this->position*2), 8, ">", 1);
     }
 }
 
@@ -116,19 +109,19 @@ void Menu::play_game()
 void Menu::change_mode()
 {
     *(this->mode) = (*(this->mode)+1) %2;
-    this->win->add_ch(10, 30, *(this->mode)+48); //temp
+    this->view->window->add_ch(10, 30, *(this->mode)+48); //temp
 }
 
 void Menu::controls_display()
 {
-    this->win->controls_display();
+    this->view->controls_display();
 
-    while (this->win->get_ch() != 'x')
+    while (this->view->window->get_ch() != 'x')
     {
         ;
     }
-    this->win->window_clear();
-    this->win->display_options(this->position, this->best_player, this->best_score);
+    this->view->window->window_clear();
+    this->view->display_options(this->position, this->best_player, this->best_score);
 }
 
 void Menu::update_best_player()

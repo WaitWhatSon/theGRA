@@ -1,18 +1,4 @@
-#include <curses.h>
-#include <iostream>
-#include <unistd.h>
-#include <thread>
-#include <clocale>
-#include <atomic>
-#include <vector>
-#include <string>
-#include <fstream>
-
 #include "Game.h"
-#include "Player.h"
-#include "MapsLoader.h"
-#include "IntroImage.h"
-#include "CoursesList.h"
 
 std::atomic<bool> x (1);
 std::atomic<bool> restart_clock (1);
@@ -22,10 +8,10 @@ void foo(View* view, Window* window)
     for (int i = 160; i >= 0; i--)
     {
         usleep(100000);
-        view->clockUpdate(window, (i/100)+48, ((i/10)%10)+48); // aktualizuj zegar
+        view->clockUpdate((i/100)+48, ((i/10)%10)+48); // aktualizuj zegar
         if(!x)
         {
-            view->clockUpdate(window, 0+48, 0+48);
+            view->clockUpdate(0+48, 0+48);
             return;
         }
         if (restart_clock)
@@ -34,8 +20,8 @@ void foo(View* view, Window* window)
             restart_clock = false;
         }
     }
-    view->clockUpdate(window, 0+48, 0+48);
-    view->gameOver(window);
+    view->clockUpdate(0+48, 0+48);
+    view->gameOver();
     window->refresh();
     x = false;
 }
@@ -44,7 +30,7 @@ bool Game::map_changed = false;
 const int Game::map_change_array[10][4];
 const int Game::rooms_coordinates[13][4];
 
-Game::Game(View* view_pointer, Window* window, int _best_score)
+Game::Game(View* view_pointer, int _best_score)
 {
     view = view_pointer; // załadowanie widoku
 
@@ -60,7 +46,7 @@ Game::Game(View* view_pointer, Window* window, int _best_score)
 			}
 	}
 
-	gameWindow = window;
+	gameWindow = view->window;
 	current_map = 0;
 	allCourses = new CoursesList();
 	this->best_score = _best_score;
@@ -71,11 +57,11 @@ Game::Game(View* view_pointer, Window* window, int _best_score)
 void Game::choose_player_name()
 {
     gameWindow->window_clear();
-    view->playerNameChoice(gameWindow);
+    view->playerNameChoice();
 
     int choice = '.';
     std::string temp_name = "PLAYER";
-    view->updatePlayerName(gameWindow, temp_name);
+    view->updatePlayerName(temp_name);
 
     while (choice != '\n' || temp_name.empty())
     {
@@ -85,13 +71,13 @@ void Game::choose_player_name()
             if (choice >= ' ' && choice <= '{' && choice != '\\' && choice != ' ')
             {
                 temp_name += choice;
-                view->updatePlayerName(gameWindow, temp_name);
+                view->updatePlayerName(temp_name);
             }
         }
         if (choice == 8)
         {
             temp_name = temp_name.substr(0, temp_name.size()-1);
-            view->updatePlayerName(gameWindow, temp_name);
+            view->updatePlayerName(temp_name);
         }
 
     }
@@ -104,7 +90,7 @@ void Game::setup_window()
     this->gameWindow->refresh();
     //wrefresh(gameWindow);
 
-    player = new Player(gameWindow, 14, 18, '@', maps[current_map],
+    player = new Player(view, 14, 18, '@', maps[current_map],
                         &goal_x, &goal_y, &goal_map, &current_map); // okno, x, y, znak, wskaznik do map
 
     choose_player_name();
@@ -119,7 +105,7 @@ void Game::setup_window()
 void Game::play_game()
 {
     std::thread thread_clock(foo, view, gameWindow);
-    view->gameBar(gameWindow);
+    view->gameBar();
 
     // variables for game //
     bool sth_changed = true;
@@ -162,7 +148,7 @@ void Game::play_game()
                 }
             }
 
-            view->gameBarUpdate(gameWindow, semester, courses[course].get_name().c_str(),
+            view->gameBarUpdate(semester, courses[course].get_name().c_str(),
                                 to_string(courses[course].get_room()).c_str(),
                                 week, player->get_player_score());
             sth_changed = false;
@@ -187,9 +173,9 @@ void Game::play_game()
             player->goal = false;
         }
 
-        view->mapFragmentUpdate(gameWindow, player->get_old_x(), player->get_old_y(),
+        view->mapFragmentUpdate(player->get_old_x(), player->get_old_y(),
                                 maps[current_map][player->get_old_y()][player->get_old_x()]);
-        view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
+        view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
         //this->gameWindow->refresh();
 
     }
@@ -214,7 +200,7 @@ void Game::load_current_map()
     {
         for (int j = 0; j<77; j++)
         {
-            view->mapFragmentUpdate(gameWindow, j, i, maps[current_map][i][j]);
+            view->mapFragmentUpdate(j, i, maps[current_map][i][j]);
             player->set_current_map(maps[current_map]);
         }
     }
@@ -222,16 +208,15 @@ void Game::load_current_map()
     {
         if (current_map == this->rooms_coordinates[i][1])
         {
-            view->mapFragmentUpdate(gameWindow, rooms_coordinates[i][2], rooms_coordinates[i][3], '*');
+            view->mapFragmentUpdate(rooms_coordinates[i][2], rooms_coordinates[i][3], '*');
         }
     }
-    view->playerPositionUpdate(gameWindow, player->get_x(), player->get_y(), '@');
+    view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
     this->gameWindow->refresh();
 }
 
 void Game::add_points(int points, bool* sth_changed)
 {
-    // do zrobienia sposob przyznawania punktów
     this->player->add_points(points);
     *sth_changed = true;
 }

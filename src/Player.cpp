@@ -1,18 +1,11 @@
 #include "Player.h"
-#include "View.h"
 #include "Game.h"
-#include <stdio.h>
-#include <curses.h>
-#include <iostream>
-#include <string>
-#include <cstring>
 
-#include "Window.h"
-
-Player::Player (Window * _win, int _yc, int _xc, char _c, char** _cmap,
+Player::Player (View* _view, int _yc, int _xc, char _c, char** _cmap,
                 int* _goal_x, int* _goal_y, int* _goal_map, int* _flor)
 {
-    win = _win;
+    view = _view;
+    win = view->window;
     y = _yc;
     x = _xc;
     old_y = _yc;
@@ -73,7 +66,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     {
         if (Game::map_change_array[*current_flor][3] == -1)
         {
-            this->win->display_quit();
+            this->view->display_quit();
             return true;
         }
     }
@@ -81,7 +74,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     {
         if (Game::map_change_array[*current_flor][1] == -1)
         {
-            this->win->display_quit();
+            this->view->display_quit();
             return true;
         }
     }
@@ -89,7 +82,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     {
         if (Game::map_change_array[*current_flor][0] == -1)
         {
-            this->win->display_quit();
+            this->view->display_quit();
             return true;
         }
     }
@@ -97,7 +90,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
     {
         if (Game::map_change_array[*current_flor][2] == -1)
         {
-            this->win->display_quit();
+            this->view->display_quit();
             return true;
         }
     }

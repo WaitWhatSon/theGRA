@@ -2,15 +2,11 @@
 #define VIEWGRAPHIC_H
 
 #include "View.h"
+#include "Window.h"
 
 class ViewGraphic: public View
 {
     public:
-        /** Default constructor */
-        ViewGraphic();
-        void test();
-        /** Default destructor */
-        virtual ~ViewGraphic();
 
     protected:
 

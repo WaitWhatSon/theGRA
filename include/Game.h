@@ -1,5 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
+
+#include <iostream>
+#include <unistd.h>
+#include <thread>
+#include <clocale>
+#include <atomic>
+#include <vector>
+#include <fstream>
 #include <curses.h>
 #include <string>
 
@@ -14,7 +22,6 @@ using namespace std;
 class Game
 {
     public:
-
         Window* gameWindow;
         char*** maps;
         Player* player;
@@ -25,13 +32,11 @@ class Game
         int goal_y;
         int goal_map;
         int current_map;
-
         int best_score;
-
         CoursesList* allCourses;
-
         static bool map_changed;
 
+        /** tablica przejsc miedzy mapami **/
         static constexpr
           int map_change_array[10][4] = {//U,     R,      D,      L,
                                /*A*/    {1,     -1,     -1,     -1  },   // parter, wejscie glówne
@@ -46,6 +51,7 @@ class Game
                                /*AP2_2*/{-1,    -1,     -1,     8   }    // drugie pietro 2
                                         };
 
+        /** wspolrzedne pomieszczen **/
         static constexpr
           int rooms_coordinates[13][4] = {//nr, map,    x,  y,
                                         {15,    1,      24, 12  },  //PP
@@ -64,10 +70,10 @@ class Game
                                         };
 
 
-        Game(View*, Window*, int);
+        Game(View*, int);
         void setup_window();
         void play_game();
-        void add_points(int points, bool* sth_changed);
+        void add_points(int, bool*);
         void choose_player_name();
         virtual ~Game();
 
