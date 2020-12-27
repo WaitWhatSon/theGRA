@@ -16,6 +16,7 @@
 					<Add directory="c:/pdcurs34/win32" />
 					<Add directory="c:/pdcurs34" />
 					<Add directory="include" />
+					<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="c:/pdcurs34/win32" />
@@ -25,6 +26,7 @@
 					<Add library="C:/pdcurs34/wincon/pdcurses.a" />
 					<Add directory="c:/pdcurs34/win32" />
 					<Add directory="c:/pdcurs34" />
+					<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -38,13 +40,24 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add option="-DSFML_STATIC" />
+			<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/include" />
 		</Compiler>
+		<Linker>
+			<Add library="sfml-graphics" />
+			<Add library="sfml-window" />
+			<Add library="sfml-system" />
+			<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/lib" />
+		</Linker>
 		<Unit filename="include/Course.h" />
 		<Unit filename="include/CoursesList.h" />
 		<Unit filename="include/Game.h" />

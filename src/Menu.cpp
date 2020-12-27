@@ -21,10 +21,15 @@ void Menu::run_menu()
 {
     this->view->window->window_clear();
     this->view->display_options(this->position, this->best_player, this->best_score);
+    int old_mode = *(this->mode);
 
     while (this->loop)
     {
         this->get_choice();
+        if(*(this->mode) != old_mode)
+        {
+            return;
+        }
     }
 }
 
