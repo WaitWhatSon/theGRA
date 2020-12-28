@@ -17,7 +17,7 @@ WindowText::WindowText()
 
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
-    win = newwin(yMax,xMax,0,0);
+    this->win = newwin(yMax,xMax,0,0);
     keypad(win, true);
     curs_set(0);
     refresh();
@@ -77,4 +77,9 @@ void WindowText::window_clear()
 void WindowText::get_str(char* name, int i)
 {
      wgetnstr(this->win, name, i);
+}
+
+void WindowText::window_destroy()
+{
+    endwin();
 }

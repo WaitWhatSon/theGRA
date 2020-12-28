@@ -40,6 +40,11 @@ void Window::window_clear()
 
 }
 
+void Window::window_destroy()
+{
+
+}
+
 void Window::get_str(char* name, int i)
 {
 

@@ -19,6 +19,7 @@ class Window
         virtual int refresh();
         virtual void window_clear();
         virtual void get_str(char* name, int i);
+        virtual void window_destroy();
 
     protected:
 

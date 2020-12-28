@@ -1,54 +1,40 @@
 #include "WindowGraphic.h"
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 
-#define CO_1     1
-#define CO_2     2
-#define CO_3     3
-#define CO_4     4
-#define CO_5     5
-#define CO_6     6
-
-
-
-#define SFML_STATIC
-#include <SFML/Graphics.hpp>
+#define X_SIZE 15
+#define Y_SIZE 10
 
 
-WindowGraphic::WindowGraphic()
+using namespace sf;
+
+sf::Font font;
+
+
+WindowGraphic::WindowGraphic(sf::RenderWindow& _win):win(_win)
 {
-    //ctor
-    initscr();
-    start_color();
-    noecho();
-    cbreak();
+    win.setVisible(true);
 
-    int yMax, xMax;
-    getmaxyx(stdscr, yMax, xMax);
+    //CircleShape shape(100.f);
+    //shape.setFillColor(Color::Green);
 
-    sf::RenderWindow window(sf::VideoMode(yMax,xMax), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
+    if(!win.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        exit(-1);
     }
 
-    init_pair(CO_1, COLOR_GREEN, COLOR_BLACK);
-    init_pair(CO_2, COLOR_WHITE, COLOR_BLACK);
-    init_pair(CO_3, COLOR_BLACK, COLOR_WHITE);
-    init_pair(CO_4, COLOR_BLACK, COLOR_RED  );
-    init_pair(CO_5, COLOR_BLACK, COLOR_GREEN);
-    init_pair(CO_6, COLOR_WHITE, COLOR_RED  );
+    win.clear();
+    //win.draw(shape);
+    //win.display();
+
+    if (!font.loadFromFile("files/open_sans/OpenSans-Regular.ttf"))
+    {
+        std::cout << "font not loaded";
+    }
+
 }
 
 WindowGraphic::~WindowGraphic()
@@ -58,43 +44,143 @@ WindowGraphic::~WindowGraphic()
 
 int WindowGraphic::get_ch()
 {
-    return wgetch(this->win);
+    //return wgetch(this->win);
+
+    if (Keyboard::isKeyPressed(Keyboard::Left))
+    {
+        return KEY_LEFT;
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::Right))
+    {
+        return KEY_RIGHT;
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::Up))
+    {
+        return KEY_UP;
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::Down))
+    {
+        return KEY_DOWN;
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::X))
+    {
+        return 'x';
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::W))
+    {
+        return 'w';
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::S))
+    {
+        //return 's';
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::M))
+    {
+        return 'm';
+    }
+    else if (Keyboard::isKeyPressed(Keyboard::Enter))
+    {
+        //return 10;
+    }
+
+    return 0;
 }
 
 int WindowGraphic::add_ch(int x, int y, char c)
 {
-    wattron(this->win, COLOR_PAIR(CO_2));
-    return mvwaddch(this->win, x, y, c);
-    wattroff(this->win, COLOR_PAIR(CO_2));
+    //wattron(this->win, COLOR_PAIR(CO_2));
+    //return mvwaddch(this->win, x, y, c);
+    //wattroff(this->win, COLOR_PAIR(CO_2));
+
+    sf::Text text{ "Meeting C++ 2018", font, 10 };
+
+    // set the string to display
+    text.setString(c);
+
+    // set the color
+    text.setFillColor(sf::Color::Red);
+
+    // set the text style
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+    text.setPosition(y*Y_SIZE, x*X_SIZE);
+
+    // inside the main loop, between window.clear() and window.display()
+    win.draw(text);
+
+
+    return 0;
 }
 
 int WindowGraphic::add_str(int x, int y, const char* s)
 {
-    wattron(this->win, COLOR_PAIR(CO_2));
-    return mvwaddstr(this->win, x, y, s);
-    wattroff(this->win, COLOR_PAIR(CO_2));
+    //wattron(this->win, COLOR_PAIR(CO_2));
+    //return mvwaddstr(this->win, x, y, s);
+    //wattroff(this->win, COLOR_PAIR(CO_2));
+
+    sf::Text text{ "Meeting C++ 2018", font, 10 };
+
+    // set the string to display
+    text.setString(s);
+
+    // set the color
+    text.setFillColor(sf::Color::Red);
+
+    // set the text style
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+    text.setPosition(y*Y_SIZE, x*X_SIZE);
+
+    // inside the main loop, between window.clear() and window.display()
+    win.draw(text);
+
+
+
+    return 0;
 }
 
 int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
 {
-    wattron(this->win, COLOR_PAIR(colour));
-    return mvwaddstr(this->win, x, y, s);
-    wattroff(this->win, COLOR_PAIR(colour));
+    //wattron(this->win, COLOR_PAIR(colour));
+    //return mvwaddstr(this->win, x, y, s);
+    //wattroff(this->win, COLOR_PAIR(colour));
 
+    CircleShape shape(20.f);
+    shape.setFillColor(Color::Cyan);
+    shape.setPosition(y*Y_SIZE, x*X_SIZE);
+
+    if(!win.isOpen())
+    {
+        exit(-1);
+    }
+
+    win.draw(shape);
+    win.display();
+
+    return 0;
 }
 
 int WindowGraphic::refresh()
 {
-    return wrefresh(win);
+    win.display();
+
+    return 0;
 }
 
 void WindowGraphic::window_clear()
 {
-    wclear(this->win);
-    wrefresh(win);
+    win.clear();
+    win.display();
+
+    return;
 }
 
 void WindowGraphic::get_str(char* name, int i)
 {
-     wgetnstr(this->win, name, i);
+     //wgetnstr(this->win, name, i);
+}
+
+void WindowGraphic::window_destroy()
+{
+    win.close();
 }

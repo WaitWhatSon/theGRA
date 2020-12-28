@@ -21,6 +21,7 @@ class WindowText: public Window
         int refresh();
         void window_clear();
         void get_str(char* name, int i);
+        void window_destroy();
 
         /** Default destructor */
         virtual ~WindowText();

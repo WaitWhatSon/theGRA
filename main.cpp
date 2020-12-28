@@ -9,34 +9,8 @@
 #include "ViewText.h"
 #include "ViewGraphic.h"
 
-#define SFML_STATIC
-#include <SFML/Graphics.hpp>
 
-/*int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
-
-    return 0;
-}
-
-*/
-
+using namespace std;
 
 int main()
 {
@@ -49,6 +23,9 @@ int main()
     View* view_pointer;     // widok
     Menu* menu;             // meni
 
+    sf::RenderWindow window(sf::VideoMode(700,300), "TheGRA");
+    window.setVisible(false);
+
     int old_mode = mode;
 
     while (!quit)   // nie wylaczono gry
@@ -59,11 +36,10 @@ int main()
             window_pointer = new WindowText();
             view_pointer = new ViewText(window_pointer);
         }
-        /// NIEZAIMPLEMENTOWANE ///
         /** TRYB GRAFICZNY **/
         else
         {
-            window_pointer = new WindowGraphic();
+            window_pointer = new WindowGraphic(window);
             view_pointer = new ViewGraphic(window_pointer);
         }
 
@@ -76,7 +52,15 @@ int main()
             game->setup_window();   // ustawienie okna
             game->play_game();      // gra
         }
+
+        if (old_mode!=mode)
+        {
+            view_pointer->window->window_destroy();
+        }
+
         old_mode = mode;
     }
+
+    cout << "SEE YOU LATER!\n";
 }
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1609037035 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1609121100 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	"Menu.h"
 	"Game.h"
 	"Window.h"
@@ -8,7 +8,6 @@
 	"View.h"
 	"ViewText.h"
 	"ViewGraphic.h"
-	<SFML/Graphics.hpp>
 
 1549075040 c:\pdcurs34\curses.h
 	<stdarg.h>
@@ -76,13 +75,13 @@
 	"Window.h"
 	"View.h"
 
-1609036931 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
+1609075169 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 
 1607292697 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	"Game.h"
 
-1607292672 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
+1609117620 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<iostream>
 	<unistd.h>
 	<thread>
@@ -136,28 +135,33 @@
 	<string>
 	<vector>
 
-1607290388 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
+1609075558 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
 	<string>
 	<stdio.h>
 
-1607293726 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowtext.h
+1609075578 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowtext.h
 	"Window.h"
 	<curses.h>
 	<clocale>
 	<string>
 	<stdio.h>
 
-1607290627 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
+1609075394 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
 	"Window.h"
 
-1607293727 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
+1609088776 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
 	"WindowText.h"
 
-1609036608 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
+1609121729 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
 	"WindowGraphic.h"
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
 
-1609036479 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
+1609116112 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
 	"Window.h"
+	<SFML/Graphics.hpp>
 	<curses.h>
 	<clocale>
 	<string>

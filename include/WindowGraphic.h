@@ -3,6 +3,9 @@
 
 #include "Window.h"
 
+#define SFML_STATIC
+#include <SFML/Graphics.hpp>
+
 #include <curses.h>
 #include <clocale>
 #include <string>
@@ -13,6 +16,7 @@ class WindowGraphic: public Window
     public:
         /** Default constructor */
         WindowGraphic();
+        WindowGraphic(sf::RenderWindow& win);
 
         int get_ch();
         int add_ch(int x, int y, char c);
@@ -21,6 +25,7 @@ class WindowGraphic: public Window
         int refresh();
         void window_clear();
         void get_str(char* name, int i);
+        void window_destroy();
 
         /** Default destructor */
         virtual ~WindowGraphic();
@@ -28,7 +33,7 @@ class WindowGraphic: public Window
     protected:
 
     private:
-        WINDOW* win;
+        sf::RenderWindow& win;
 };
 
 #endif // WINDOWGRAPHIC_H
