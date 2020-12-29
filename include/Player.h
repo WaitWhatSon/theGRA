@@ -26,14 +26,6 @@ class Player
         int* goal_map;
         int* current_flor;
 
-        void update_xy();
-        void move_up();
-        void move_down();
-        void move_left();
-        void move_right();
-        void next_floor();
-        void prev_floor();
-
     public:
         bool goal;
 
@@ -53,6 +45,15 @@ class Player
         std::string get_player_name();
         void set_current_map(char** cmap);
         void check_position();
+
+        void update_xy();
+        void move_up();
+        void move_down();
+        void move_left();
+        void move_right();
+        void next_floor();
+        void prev_floor();
+
         ~Player();
 };
 

@@ -17,6 +17,8 @@
 #include "Window.h"
 #include "CoursesList.h"
 
+#define SFML_STATIC
+#include <SFML/Graphics.hpp>
 
 
 using namespace std;
@@ -72,7 +74,7 @@ class Game
                                         };
 
 
-        Game(View*, int);
+        Game(View*, int, sf::RenderWindow&, int);
         void setup_window();
         void play_game();
         void add_points(int, bool*);
@@ -83,6 +85,7 @@ class Game
 
     private:
         void load_current_map();
+        sf::RenderWindow& win;
 };
 
 #endif // GAME_H

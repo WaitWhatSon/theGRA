@@ -14,19 +14,19 @@ ViewGraphic::ViewGraphic(Window* _window)
 
 void ViewGraphic::clockUpdate(char decSec, char sec)
 {
-        this->window->add_ch(16, 72, decSec);
-        this->window->add_ch(16, 73, sec);
-        this->window->refresh();
+        //this->window->add_ch(500, 300, decSec);
+        //this->window->add_ch(510, 300, sec);
+        //this->window->refresh();
 }
 
 void ViewGraphic::mapFragmentUpdate(int x, int y, char current_map_char)
 {
-    this->window->add_ch(y, x, current_map_char);
+    this->window->add_ch(y*10, x*10, current_map_char);
 }
 
 void ViewGraphic::playerPositionUpdate(int x, int y, char player_character)
 {
-    this->window->add_ch(y, x, player_character);
+    this->window->add_ch(y*10, x*10, player_character);
 }
 
 void ViewGraphic::gameBar()
@@ -48,30 +48,27 @@ void ViewGraphic::gameBarUpdate(int semester, const char* course_name, const cha
 
 void ViewGraphic::gameOver()
 {
-    this->window->add_str_colour(16, 72, "!!!", 4);
-    this->window->add_str_colour(8, 34, "GAME OVER", 6);
+    //this->window->add_str_colour(16, 72, "!!!", 4);
+    //this->window->add_str_colour(8, 34, "GAME OVER", 6);
 }
 
 void ViewGraphic::playerNameChoice()
 {
-    this->window->add_str_colour(5, 33, "PLAYER NAME:", 1);
-    this->window->add_str_colour(7, 33, ">          <", 1);
-    this->window->add_str_colour(9, 30, "(max 10 characters)", 2);
+    this->window->add_str(5, 33, "PLAYER NAME:");
+    this->window->add_str(7, 33, ">          <");
+    this->window->add_str(9, 30, "(max 10 characters)");
 }
 
 void ViewGraphic::updatePlayerName(std::string name)
 {
-    this->window->add_str_colour(7, 34, name.c_str(), 2);
-    if(name.size()<10)
-    {
-        this->window->add_ch(7, 34+name.size(), ' ');
-    }
+    const char * const_name = name.c_str();
+    this->window->add_str(100, 100, const_name);
 }
 
 const void ViewGraphic::display_quit()
 {
-    this->window->add_str(17,  9, "Are you sure you want to exit PB?");
-    this->window->add_str_colour(17,  43, "(press X if you are sure)", 1);
+    this->window->add_str(100,  300, "Are you sure you want to exit PB?");
+    this->window->add_str(100,  500, "(press X if you are sure)");
 }
 
 ////////MENU///////

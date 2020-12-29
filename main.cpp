@@ -12,7 +12,6 @@
 #include "ViewText.h"
 #include "ViewGraphic.h"
 
-
 using namespace std;
 
 int main()
@@ -52,7 +51,7 @@ int main()
 
         if (!quit && old_mode==mode)  // nie wylaczono gry w meni
         {
-            Game* game = new Game(view_pointer, menu->best_score);
+            Game* game = new Game(view_pointer, menu->best_score, window, mode);
             game->setup_window();   // ustawienie okna
             game->play_game();      // gra
         }

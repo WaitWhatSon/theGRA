@@ -49,6 +49,7 @@ void ViewText::gameOver()
 {
     this->window->add_str_colour(16, 72, "!!!", 4);
     this->window->add_str_colour(8, 34, "GAME OVER", 6);
+    this->window->refresh();
 }
 
 void ViewText::playerNameChoice()
