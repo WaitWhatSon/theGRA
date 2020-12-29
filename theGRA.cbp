@@ -63,6 +63,8 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/MapsLoader.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/MenuGraphic.h" />
+		<Unit filename="include/MenuText.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/View.h" />
 		<Unit filename="include/ViewGraphic.h" />
@@ -76,6 +78,8 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/MapsLoader.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/MenuGraphic.cpp" />
+		<Unit filename="src/MenuText.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/View.cpp" />
 		<Unit filename="src/ViewGraphic.cpp" />

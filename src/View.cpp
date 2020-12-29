@@ -70,6 +70,27 @@ const void View::display_quit()
 
 }
 
+const void View::menu_move_up_clear(int position)
+{
+
+}
+
+const void View::menu_move_up_draw(int position)
+{
+
+}
+
+const void View::menu_move_down_clear(int position)
+{
+
+}
+
+const void View::menu_move_down_draw(int position)
+{
+
+}
+
+
 View::~View()
 {
     //dtor

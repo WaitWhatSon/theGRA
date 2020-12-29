@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1609121100 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1609205770 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	"Menu.h"
+	"MenuText.h"
+	"MenuGraphic.h"
 	"Game.h"
 	"Window.h"
 	"WindowText.h"
@@ -51,31 +53,31 @@
 
 1603739673 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\model.h
 
-1607293590 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
+1609183597 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\view.cpp
 	"View.h"
 
-1607293599 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
+1609183538 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\view.h
 	<curses.h>
 	<string>
 	<stdio.h>
 	"Window.h"
 
-1607293630 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
+1609183669 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewtext.cpp
 	"ViewText.h"
 
-1607293650 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
+1609183557 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewtext.h
 	"View.h"
 	"Window.h"
 	<curses.h>
 	<string>
 
-1607293024 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
+1609192322 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menu.h
 	<fstream>
 	<string.h>
 	"Window.h"
 	"View.h"
 
-1609075169 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
+1609190861 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 
 1607292697 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
@@ -97,7 +99,7 @@
 	"Window.h"
 	"CoursesList.h"
 
-1609036547 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewgraphic.h
+1609193539 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\viewgraphic.h
 	"View.h"
 	"Window.h"
 	"View.h"
@@ -105,7 +107,7 @@
 	<curses.h>
 	<string>
 
-1609036393 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
+1609209559 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
 	"ViewGraphic.h"
 
 1605481139 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\introimage.h
@@ -135,7 +137,7 @@
 	<string>
 	<vector>
 
-1609075558 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
+1609193072 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\window.h
 	<string>
 	<stdio.h>
 
@@ -146,20 +148,20 @@
 	<string>
 	<stdio.h>
 
-1609075394 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
+1609193083 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\window.cpp
 	"Window.h"
 
-1609088776 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
+1609183133 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
 	"WindowText.h"
 
-1609121729 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
+1609200542 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
 	"WindowGraphic.h"
 	<unistd.h>
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
 
-1609116112 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
+1609194194 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\windowgraphic.h
 	"Window.h"
 	<SFML/Graphics.hpp>
 	<curses.h>
@@ -575,4 +577,28 @@
 	<SFML/Graphics/PrimitiveType.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
+
+1609209117 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menugraphic.cpp
+	"MenuGraphic.h"
+	"WindowGraphic.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1609193505 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menugraphic.h
+	<fstream>
+	<string.h>
+	"Menu.h"
+	"Window.h"
+	"View.h"
+	<SFML/Graphics.hpp>
+
+1609190431 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menutext.cpp
+	"MenuText.h"
+
+1609192051 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menutext.h
+	<fstream>
+	<string.h>
+	"Menu.h"
+	"Window.h"
+	"View.h"
 

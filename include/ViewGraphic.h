@@ -24,10 +24,15 @@ class ViewGraphic: public View
         void gameOver();
         void playerNameChoice();
         void updatePlayerName(std::string name);
+        void const display_quit();
+        ///////////////
         void const display_logo();
         void const display_options(int position, std::string best_player, int best_score);
         void const controls_display();
-        void const display_quit();
+        void const menu_move_up_clear(int);
+        void const menu_move_up_draw(int);
+        void const menu_move_down_clear(int);
+        void const menu_move_down_draw(int);
 
         /** Default destructor */
         virtual ~ViewGraphic();

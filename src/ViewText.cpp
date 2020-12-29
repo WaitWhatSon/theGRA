@@ -126,6 +126,25 @@ const void ViewText::display_quit()
     this->window->add_str_colour(17,  43, "(press X if you are sure)", 1);
 }
 
+const void ViewText::menu_move_up_clear(int position)
+{
+    this->window->add_ch((8 + position*2), 8, ' ');
+}
+
+const void ViewText::menu_move_up_draw(int position)
+{
+    this->window->add_str_colour((8 + position*2), 8, ">", 1);
+}
+
+const void ViewText::menu_move_down_clear(int position)
+{
+    this->window->add_ch((8 + position*2), 8, ' ');
+}
+
+const void ViewText::menu_move_down_draw(int position)
+{
+    this->window->add_str_colour((8 + position*2), 8, ">", 1);
+}
 
 ViewText::~ViewText()
 {

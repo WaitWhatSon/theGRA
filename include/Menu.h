@@ -15,15 +15,7 @@ class Menu
         Menu();
         Menu(View*, int*, int*);
         virtual ~Menu();
-        void run_menu();
-        int get_choice();
-        void move_up();
-        void move_down();
-        void quit_game();
-        void play_game();
-        void change_mode();
-        void controls_display();
-        void update_best_player();
+        virtual void run_menu();
 
     protected:
 

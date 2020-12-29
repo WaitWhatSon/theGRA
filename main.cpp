@@ -1,4 +1,7 @@
 #include "Menu.h"
+#include "MenuText.h"
+#include "MenuGraphic.h"
+
 #include "Game.h"
 
 #include "Window.h"
@@ -23,7 +26,7 @@ int main()
     View* view_pointer;     // widok
     Menu* menu;             // meni
 
-    sf::RenderWindow window(sf::VideoMode(700,300), "TheGRA");
+    sf::RenderWindow window(sf::VideoMode(800,500), "TheGRA");
     window.setVisible(false);
 
     int old_mode = mode;
@@ -35,15 +38,16 @@ int main()
         {
             window_pointer = new WindowText();
             view_pointer = new ViewText(window_pointer);
+            menu = new MenuText(view_pointer, &mode, &quit);
         }
         /** TRYB GRAFICZNY **/
         else
         {
             window_pointer = new WindowGraphic(window);
             view_pointer = new ViewGraphic(window_pointer);
+            menu = new MenuGraphic(view_pointer, &mode, &quit, window);
         }
 
-        menu = new Menu(view_pointer, &mode, &quit);
         menu->run_menu();
 
         if (!quit && old_mode==mode)  // nie wylaczono gry w meni

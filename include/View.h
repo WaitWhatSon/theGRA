@@ -23,10 +23,15 @@ class View
         virtual void gameOver();
         virtual void playerNameChoice();
         virtual void updatePlayerName(std::string);
+        virtual const void display_quit();
+        ///////////
         virtual const void display_logo();
         virtual const void display_options(int position, std::string best_player, int best_score);
         virtual const void controls_display();
-        virtual const void display_quit();
+        virtual const void menu_move_up_clear(int);
+        virtual const void menu_move_up_draw(int);
+        virtual const void menu_move_down_clear(int);
+        virtual const void menu_move_down_draw(int);
 
         /** Default destructor */
         virtual ~View();
