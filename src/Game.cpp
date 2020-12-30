@@ -3,6 +3,10 @@
 std::atomic<bool> x (1);
 std::atomic<bool> restart_clock (1);
 
+// tekstury map //
+sf::Texture maps_textures[10];
+sf::Sprite map_sprite;
+
 int mode;
 
 void foo(View* view, Window* window)
@@ -50,6 +54,11 @@ Game::Game(View* view_pointer, int _best_score, sf::RenderWindow& win, int _mode
 	this->best_score = _best_score;
 	mode = _mode;
 	x = true;
+
+    if(mode == 1)
+    {
+        load_maps_graphic();
+    }
 }
 
 void Game::choose_player_name()
@@ -270,47 +279,24 @@ void Game::play_game()
             {
                 if (event.type == sf::Event::Closed)
                 {
-                    this->win.close();
+                this->win.close();
                 }
                 else if(event.type == sf::Event::KeyPressed)
                 {
-                    if(event.key.code == sf::Keyboard::Up)
-                    {
-                        this->player->move_up();
-                    }
-                    if(event.key.code == sf::Keyboard::Down)
-                    {
-                        this->player->move_down();
-                    }
-                    if(event.key.code == sf::Keyboard::Left)
-                    {
-                        this->player->move_left();
-                    }
-                    if(event.key.code == sf::Keyboard::Right)
-                    {
-                        this->player->move_right();
-                    }
-                    if(event.key.code == sf::Keyboard::W)
-                    {
-                        this->player->next_floor();
-                    }
-                    if(event.key.code == sf::Keyboard::S)
-                    {
-                        this->player->prev_floor();
-                    }
-                    if(event.key.code == sf::Keyboard::A)
-                    {
-                        this->player->check_position();
-                    }
-                    if(event.key.code == sf::Keyboard::X)
-                    {
-                        x = false;
-                    }
+                    if     (event.key.code == sf::Keyboard::Up)     this->player->move_up();
+                    else if(event.key.code == sf::Keyboard::Down)   this->player->move_down();
+                    else if(event.key.code == sf::Keyboard::Left)   this->player->move_left();
+                    else if(event.key.code == sf::Keyboard::Right)  this->player->move_right();
+                    else if(event.key.code == sf::Keyboard::W) this->player->next_floor();
+                    else if(event.key.code == sf::Keyboard::S) this->player->prev_floor();
+                    else if(event.key.code == sf::Keyboard::A) this->player->check_position();
+                    else if(event.key.code == sf::Keyboard::X) x = false;
                 }
             }
             if (map_changed)
             {
                 load_current_map();
+                map_sprite.setTexture(maps_textures[current_map]);
                 map_changed = false;
             }
 
@@ -322,8 +308,9 @@ void Game::play_game()
             }
             // clear the window with black color
             this->win.clear(sf::Color::Black);
-            this->view->window->add_ch(200, 200, 'r');
 
+            this->win.draw(map_sprite);
+            view->gameBar();
             view->mapFragmentUpdate(player->get_old_x(), player->get_old_y(),
                                     maps[current_map][player->get_old_y()][player->get_old_x()]);
             view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
@@ -376,4 +363,21 @@ void Game::add_points(int points, bool* sth_changed)
 Game::~Game()
 {
     //dtor
+}
+
+// do trybu graficznego //
+void Game::load_maps_graphic()
+{
+    char* map_names[] = {   "files/maps_graphic/mapA.png",     "files/maps_graphic/mapB.png",
+                            "files/maps_graphic/mapC1.png",    "files/maps_graphic/mapC2.png",
+                            "files/maps_graphic/mapAP0_1.png", "files/maps_graphic/mapAP0_2.png",
+                            "files/maps_graphic/mapAP1_1.png", "files/maps_graphic/mapAP1_2.png",
+                            "files/maps_graphic/mapAP2_1.png", "files/maps_graphic/mapAP2_2.png"};
+
+    for (int i=0; i<10; i++)
+    {
+        maps_textures[i].loadFromFile(map_names[i]);
+    }
+    map_sprite.setTexture(maps_textures[0]);
+    map_sprite.setPosition(10, 10);
 }

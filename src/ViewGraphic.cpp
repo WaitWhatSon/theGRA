@@ -1,5 +1,8 @@
 #include "ViewGraphic.h"
 
+#define X_ 9
+#define y_ 18
+
 #define MENU_POS_X1 100
 
 ViewGraphic::ViewGraphic()
@@ -21,17 +24,17 @@ void ViewGraphic::clockUpdate(char decSec, char sec)
 
 void ViewGraphic::mapFragmentUpdate(int x, int y, char current_map_char)
 {
-    this->window->add_ch(y*10, x*10, current_map_char);
+    //this->window->add_ch(y*10, x*10, current_map_char);
 }
 
 void ViewGraphic::playerPositionUpdate(int x, int y, char player_character)
 {
-    this->window->add_ch(y*10, x*10, player_character);
+    this->window->add_ch(y*18+10, x*9+10, player_character);
 }
 
 void ViewGraphic::gameBar()
 {
-    this->window->add_str_colour(15,  0, " semester: next course:       room number:  week:            score:    time: ", 5);
+    this->window->add_str(400, 50, "semester: next course: room number: week: score: time:");
 }
 
 void ViewGraphic::gameBarUpdate(int semester, const char* course_name, const char* room_number, int week, int score)

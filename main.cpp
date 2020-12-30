@@ -25,7 +25,7 @@ int main()
     View* view_pointer;     // widok
     Menu* menu;             // meni
 
-    sf::RenderWindow window(sf::VideoMode(800,500), "TheGRA");
+    sf::RenderWindow window(sf::VideoMode(713,500), "TheGRA");
     window.setVisible(false);
 
     int old_mode = mode;

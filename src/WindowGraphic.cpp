@@ -88,7 +88,7 @@ int WindowGraphic::add_str(int x, int y, const char* s)
 
 int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
 {
-    CircleShape shape(20.f);
+    CircleShape shape(15.f);
     shape.setFillColor(Color::Cyan);
     shape.setPosition(y, x);
 

@@ -86,6 +86,7 @@ class Game
     private:
         void load_current_map();
         sf::RenderWindow& win;
+        void load_maps_graphic();
 };
 
 #endif // GAME_H

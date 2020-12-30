@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1609264516 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1609301715 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	"Menu.h"
 	"MenuText.h"
 	"MenuGraphic.h"
@@ -37,7 +37,7 @@
 
 1603300006 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\map.h
 
-1607292780 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\mapsloader.h
+1609299800 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\mapsloader.h
 	<fstream>
 
 1603738285 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\controler.cpp
@@ -45,7 +45,7 @@
 
 1603738285 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\controler.h
 
-1607292777 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\mapsloader.cpp
+1609299795 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\mapsloader.cpp
 	"MapsLoader.h"
 
 1603739298 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\model.cpp
@@ -80,10 +80,10 @@
 1609190861 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 
-1609280446 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1609302059 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
 	"Game.h"
 
-1609264527 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
+1609299878 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<iostream>
 	<unistd.h>
 	<thread>
@@ -108,7 +108,7 @@
 	<curses.h>
 	<string>
 
-1609279181 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
+1609302007 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\viewgraphic.cpp
 	"ViewGraphic.h"
 
 1605481139 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\introimage.h
