@@ -3,17 +3,10 @@
 #define X_ 9
 #define y_ 18
 
-#define MENU_POS_X1 100
 
-ViewGraphic::ViewGraphic()
-{
+ViewGraphic::ViewGraphic() {}
 
-}
-
-ViewGraphic::ViewGraphic(Window* _window)
-{
-    this->window = _window;
-}
+ViewGraphic::ViewGraphic(Window* _window) {this->window = _window;}
 
 void ViewGraphic::clockUpdate(char decSec, char sec)
 {
@@ -57,15 +50,18 @@ void ViewGraphic::gameOver()
 
 void ViewGraphic::playerNameChoice()
 {
-    this->window->add_str(5, 33, "PLAYER NAME:");
-    this->window->add_str(7, 33, ">          <");
-    this->window->add_str(9, 30, "(max 10 characters)");
+    this->window->add_str(150, 100, "PLAYER NAME:");
+    this->window->add_str(175, 100, "(max 10 characters)");
 }
 
 void ViewGraphic::updatePlayerName(std::string name)
 {
     const char * const_name = name.c_str();
-    this->window->add_str(100, 100, const_name);
+    this->window->add_str_colour(200, 100, const_name, 'g');
+    if(!name.empty())
+    {
+        this->window->add_str(225, 100, "(press ENTER to play)");
+    }
 }
 
 const void ViewGraphic::display_quit()
@@ -83,49 +79,66 @@ const void ViewGraphic::display_logo()
 
 const void ViewGraphic::display_options(int position, std::string best_player, int best_score)
 {
-    this->window->add_str(MENU_POS_X1*1, 100, "(P) PLAY GAME");
-    this->window->add_str(MENU_POS_X1*2, 100, "(M) SWITCH MODE");
-    this->window->add_str(MENU_POS_X1*3, 100, "(C) CONTROLS");
-    this->window->add_str(MENU_POS_X1*4, 100, "(X) EXIT");
+    this->window->add_str(     200, 100, "(P) PLAY GAME");
+    this->window->add_str(50*1+200, 100, "(M) SWITCH MODE");
+    this->window->add_str(50*2+200, 100, "(C) CONTROLS");
+    this->window->add_str(50*3+200, 100, "(X) EXIT");
 
-    this->window->add_str(MENU_POS_X1*2, 300, "--> BEST PLAYER <--");
+    this->window->add_str(50*1+200, 350, "BEST PLAYER:");
+    this->window->add_str_colour(50*1+200, 500, (best_player).c_str(), 'g');
 
-    this->window->add_str(MENU_POS_X1*3, 300, (best_player).c_str());
+    this->window->add_str(50*2+200, 410, "SCORE:");
     const char * score = (std::to_string(best_score)).c_str();
-    this->window->add_str(MENU_POS_X1*3, 350, score);
+    this->window->add_str_colour(50*2+200, 500, score, 'g');
 }
 
 const void ViewGraphic::controls_display()
 {
-    this->window->add_str(1,  26, "------> CONTROLS <------");
-    this->window->add_str(3,  10, "--> PLAYER CONTROLS <--");
-    this->window->add_str(5,  10, "move up");
-    this->window->add_str(5,  28+3, "UP");
-    this->window->add_str(6,  10, "move down");
-    this->window->add_str(6,  28+1, "DOWN");
-    this->window->add_str(7,  10, "move left");
-    this->window->add_str(7,  28+1, "LEFT");
-    this->window->add_str(8,  10, "move right");
-    this->window->add_str(8,  28, "RIGHT");
-    this->window->add_str(10, 10, "floor up");
-    this->window->add_str(10, 28+4, "W");
-    this->window->add_str(11, 10, "floor down");
-    this->window->add_str(11, 28+4, "S");
-    this->window->add_str(12, 10, "admit");
-    this->window->add_str(12, 28+4, "A");
-    this->window->add_str(14, 30, "back to menu");
-    this->window->add_str(14, 45, "X");
+    this->window->add_str(50,  300, "CONTROLS");
+    this->window->add_str_colour(75,  265, "PLAYER CONTROLS", 'g');
+    this->window->add_str(125,  100, "move up");
+    this->window->add_str_colour(125,  300, "UP", 'g');
+    this->window->add_str(150,  100, "move down");
+    this->window->add_str_colour(150,  300, "DOWN", 'g');
+    this->window->add_str(175,  100, "move left");
+    this->window->add_str_colour(175,  300, "LEFT", 'g');
+    this->window->add_str(200,  100, "move right");
+    this->window->add_str_colour(200,  300, "RIGHT", 'g');
+    this->window->add_str(250, 100, "floor up");
+    this->window->add_str_colour(250,  300, "W", 'g');
+    this->window->add_str(275, 100, "floor down");
+    this->window->add_str_colour(275,  300, "S", 'g');
+    this->window->add_str(300, 100, "admit");
+    this->window->add_str_colour(300,  300, "A", 'g');
+    this->window->add_str(350, 260, "back to menu");
+    this->window->add_str_colour(350,  430, "X", 'g');
 }
 
 const void ViewGraphic::menu_move_up_clear(int position)
 {
-    // unused in this mode
+    // used for color text
+    if (position == 0)
+    {
+        this->window->add_str_colour(200, 100, "(P) PLAY GAME", 'g');
+    }
+    else if (position == 1)
+    {
+        this->window->add_str_colour(250, 100, "(M) SWITCH MODE", 'g');
+    }
+    else if (position == 2)
+    {
+        this->window->add_str_colour(300, 100, "(C) CONTROLS", 'g');
+    }
+    else if (position == 3)
+    {
+        this->window->add_str_colour(350, 100, "(X) EXIT", 'g');
+    }
 }
 
 const void ViewGraphic::menu_move_up_draw(int position)
 {
     // used for player choice position displaying
-    this->window->add_ch(MENU_POS_X1*(1+position), 50, 'b');
+    this->window->add_ch(50*position+200, 50, 'b');
 }
 
 const void ViewGraphic::menu_move_down_clear(int position)

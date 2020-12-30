@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-    int mode = 0;
+    int mode = 1;
     // tryb: 0 -> tekstowy, 1 -> graficzny
     int quit = 0;
     // 0 -> graj, 1-> wylacz
@@ -25,7 +25,7 @@ int main()
     View* view_pointer;     // widok
     Menu* menu;             // meni
 
-    sf::RenderWindow window(sf::VideoMode(713,500), "TheGRA");
+    sf::RenderWindow window(sf::VideoMode(713,400), "TheGRA");
     window.setVisible(false);
 
     int old_mode = mode;

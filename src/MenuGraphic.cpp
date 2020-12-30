@@ -10,7 +10,7 @@
 sf::Texture texture_background;
 sf::Texture texture_logo;
 
-sf::Sprite background;
+sf::Sprite background_menu;
 sf::Sprite logo;
 
 MenuGraphic::MenuGraphic(View* _view, int* _mode, int* _quit, sf::RenderWindow& win):win(win)
@@ -27,7 +27,7 @@ MenuGraphic::MenuGraphic(View* _view, int* _mode, int* _quit, sf::RenderWindow& 
     if (!texture_background.loadFromFile("files/background_photo.png")) exit -1;
     if (!texture_logo.loadFromFile("files/logo.png")) exit -1;
 
-    background.setTexture(texture_background);
+    background_menu.setTexture(texture_background);
     logo.setTexture(texture_logo);
 }
 
@@ -72,10 +72,11 @@ void MenuGraphic::run_menu()
         }
         // clear the window with black color
         this->win.clear(sf::Color::Black);
-        this->win.draw(background);
+        this->win.draw(background_menu);
         this->win.draw(logo);
         this->view->display_options(this->position, this->best_player, this->best_score);
         this->view->menu_move_up_draw(this->position);
+        this->view->menu_move_up_clear(this->position);
         // end the current frame
         this->win.display();
     }
@@ -142,7 +143,7 @@ void MenuGraphic::change_mode()
 void MenuGraphic::controls_display()
 {
     this->win.clear(sf::Color::Black);
-    this->win.draw(background);
+    this->win.draw(background_menu);
     this->view->controls_display();
     this->win.display();
 

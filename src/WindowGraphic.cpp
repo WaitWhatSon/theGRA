@@ -55,8 +55,12 @@ int WindowGraphic::add_ch(int x, int y, char c)
     }
     else if ( c == '@' )
     {
-        shape.setFillColor(Color::Green);
-        shape.setPosition(y, x);
+        RectangleShape rect;
+        rect.setSize(Vector2f(9, 18));
+        rect.setFillColor(Color::Green);
+        rect.setPosition(y, x);
+        win.draw(rect);
+        return 0;
     }
     else if ( c == '#' )
     {
@@ -74,29 +78,33 @@ int WindowGraphic::add_ch(int x, int y, char c)
 
 int WindowGraphic::add_str(int x, int y, const char* s)
 {
-    sf::Text text{ "temp", font, 30 };
-    text.setString(s);
-    // set the color
-    text.setFillColor(sf::Color::Red);
-    // set the text style
-    //text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    sf::Text text{ s, font, 18 };
+    text.setFillColor(sf::Color::Black);
+    text.setStyle(sf::Text::Bold);
     text.setPosition(y, x);
-    // inside the main loop, between window.clear() and window.display()
     win.draw(text);
     return 0;
 }
 
 int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
 {
-    CircleShape shape(15.f);
-    shape.setFillColor(Color::Cyan);
-    shape.setPosition(y, x);
-
-    if(!win.isOpen())
+    sf::Text text{ s, font, 18 };
+    if(colour == 'r')
     {
-        exit(-1);
+        text.setFillColor(sf::Color::Red);
+        //text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     }
-    win.draw(shape);
+    else if(colour == 'g')
+    {
+        text.setStyle(sf::Text::Bold);
+        text.setFillColor(sf::Color::Green);
+    }
+    else if(colour == 'b')
+    {
+        text.setFillColor(sf::Color::Black);
+    }
+    text.setPosition(y, x);
+    win.draw(text);
 
     return 0;
 }

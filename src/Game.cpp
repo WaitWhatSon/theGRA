@@ -3,6 +3,9 @@
 std::atomic<bool> x (1);
 std::atomic<bool> restart_clock (1);
 
+// tekstury tła //
+sf::Texture background_texture;
+sf::Sprite background;
 // tekstury map //
 sf::Texture maps_textures[10];
 sf::Sprite map_sprite;
@@ -92,6 +95,8 @@ void Game::choose_player_name()
     }
     else    /** GRAFICZNY **/
     {
+        if (!background_texture.loadFromFile("files/background_photo.png")) exit -1;
+        background.setTexture(background_texture);
         while (this->win.isOpen())
         {
             // check all the window's events that were triggered since the last iteration of the loop
@@ -133,6 +138,7 @@ void Game::choose_player_name()
             }
             // clear the window with black color
             this->win.clear(sf::Color::Black);
+            this->win.draw(background);
             view->playerNameChoice();
             view->updatePlayerName(temp_name);
             this->win.display();
