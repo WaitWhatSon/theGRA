@@ -141,7 +141,7 @@ const void ViewGraphic::menu_move_up_clear(int position)
 const void ViewGraphic::menu_move_up_draw(int position)
 {
     // used for player choice position displaying
-    this->window->add_ch(50*position+200, 50, 'b');
+    this->window->add_ch(50*position+200, 70, 'g');
 }
 
 const void ViewGraphic::menu_move_down_clear(int position)

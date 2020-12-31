@@ -46,11 +46,13 @@ int WindowGraphic::get_ch()
 
 int WindowGraphic::add_ch(int x, int y, char c)
 {
-    if ( c == 'b' ) // menu choice
+    if ( c == 'g' ) // menu choice
     {
         CircleShape shape(10.f);
-        shape.setFillColor(Color::Blue);
+        shape.setFillColor(Color::Green);
         shape.setPosition(y, x);
+        shape.setOutlineColor(sf::Color::Black);
+        shape.setOutlineThickness(3.f);
         win.draw(shape);
     }
     else if ( c == '@' ) // player
@@ -75,8 +77,10 @@ int WindowGraphic::add_ch(int x, int y, char c)
 int WindowGraphic::add_str(int x, int y, const char* s)
 {
     sf::Text text{ s, font, 18 };
-    text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::White);
+    text.setOutlineColor(sf::Color::Black);
+    text.setOutlineThickness(3.f);
     text.setPosition(y, x);
     win.draw(text);
     return 0;
@@ -93,6 +97,8 @@ int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
     {
         text.setStyle(sf::Text::Bold);
         text.setFillColor(sf::Color::Green);
+        text.setOutlineColor(sf::Color::Black);
+        text.setOutlineThickness(3.f);
     }
     else if(colour == 'w')
     {
@@ -101,15 +107,17 @@ int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
     }
     else if(colour == 'q') // game over case
     {
-        RectangleShape rect{Vector2f(197, 60)};
+        /*RectangleShape rect{Vector2f(197, 60)};
         rect.setFillColor(Color::Black);
         rect.setPosition(y, x);
-        win.draw(rect);
+        win.draw(rect);*/
 
         text.setCharacterSize(30);
         text.setFillColor(sf::Color::Red);
         text.setStyle(sf::Text::Bold);
         text.setPosition(y+10, x+10);
+        text.setOutlineColor(sf::Color::Black);
+        text.setOutlineThickness(5.f);
         win.draw(text);
         return 0;
     }
