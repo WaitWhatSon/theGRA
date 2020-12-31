@@ -13,6 +13,7 @@
 class ViewGraphic: public View
 {
     public:
+        bool display_quit_var;
         /** Default constructor */
         ViewGraphic();
         ViewGraphic(Window*);

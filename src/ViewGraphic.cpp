@@ -1,4 +1,5 @@
 #include "ViewGraphic.h"
+#include <cstring>
 
 #define X_ 9
 #define y_ 18
@@ -6,18 +7,17 @@
 
 ViewGraphic::ViewGraphic() {}
 
-ViewGraphic::ViewGraphic(Window* _window) {this->window = _window;}
+ViewGraphic::ViewGraphic(Window* _window) {this->window = _window; this->display_quit_var = false;}
 
 void ViewGraphic::clockUpdate(char decSec, char sec)
 {
-        //this->window->add_ch(500, 300, decSec);
-        //this->window->add_ch(510, 300, sec);
-        //this->window->refresh();
+    std::string time = std::to_string(decSec) + std::to_string(sec);
+    this->window->add_str_colour(300, 650, time.c_str(), 'g');
 }
 
 void ViewGraphic::mapFragmentUpdate(int x, int y, char current_map_char)
 {
-    //this->window->add_ch(y*10, x*10, current_map_char);
+    // impossible to implement with this library
 }
 
 void ViewGraphic::playerPositionUpdate(int x, int y, char player_character)
@@ -27,25 +27,29 @@ void ViewGraphic::playerPositionUpdate(int x, int y, char player_character)
 
 void ViewGraphic::gameBar()
 {
-    this->window->add_str(400, 50, "semester: next course: room number: week: score: time:");
+    this->window->add_str_colour(300, 20, "semester:\nweek:", 'w');
+    this->window->add_str_colour(300, 250, "next course:\nroom number:", 'w');
+    this->window->add_str_colour(300, 550, "time:\nscore:", 'w');
 }
 
 void ViewGraphic::gameBarUpdate(int semester, const char* course_name, const char* room_number, int week, int score)
 {
-    this->window->add_str_colour(16,  0, "|         |                  |             |                |         |   s |", 2);
-    this->window->add_ch(16, 2, semester+48);
-    this->window->add_str(16, 12, course_name);
-    this->window->add_str(16, 31, room_number);
-    std::string week_string = std::to_string(week);
-    this->window->add_str(16, 45, week_string.c_str());
+    this->gameBar();
+
+    std::string semester_week = std::to_string(semester) + "\n" + std::to_string(week);
     std::string score_string = std::to_string(score);
-    this->window->add_str(16, 62, score_string.c_str());
+
+    this->window->add_str_colour(300, 150, semester_week.c_str(), 'g');
+    this->window->add_str_colour(300, 400, course_name, 'g');
+    this->window->add_str_colour(325, 400, room_number, 'g');
+    this->window->add_str_colour(325, 650, score_string.c_str(), 'g');
+
 }
 
 void ViewGraphic::gameOver()
 {
-    //this->window->add_str_colour(16, 72, "!!!", 4);
-    //this->window->add_str_colour(8, 34, "GAME OVER", 6);
+    this->window->add_str_colour(300, 650, "!!!", 'r');
+    this->window->add_str_colour(150, 260, "GAME OVER", 'q');
 }
 
 void ViewGraphic::playerNameChoice()
@@ -66,15 +70,14 @@ void ViewGraphic::updatePlayerName(std::string name)
 
 const void ViewGraphic::display_quit()
 {
-    this->window->add_str(100,  300, "Are you sure you want to exit PB?");
-    this->window->add_str(100,  500, "(press X if you are sure)");
+    this->window->add_str_colour(360,  100, "Are you sure you want to exit PB? (press X if you are sure)", 'r');
 }
 
 ////////MENU///////
 
 const void ViewGraphic::display_logo()
 {
-
+    // unused - logo displaying in loop
 }
 
 const void ViewGraphic::display_options(int position, std::string best_player, int best_score)
@@ -116,7 +119,7 @@ const void ViewGraphic::controls_display()
 
 const void ViewGraphic::menu_move_up_clear(int position)
 {
-    // used for color text
+    // used for color text at player choice
     if (position == 0)
     {
         this->window->add_str_colour(200, 100, "(P) PLAY GAME", 'g');

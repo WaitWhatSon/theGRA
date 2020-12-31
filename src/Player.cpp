@@ -67,6 +67,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
         if (Game::map_change_array[*current_flor][3] == -1)
         {
             this->view->display_quit();
+            this->view->display_quit_var = true;
             return true;
         }
     }
@@ -75,6 +76,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
         if (Game::map_change_array[*current_flor][1] == -1)
         {
             this->view->display_quit();
+            this->view->display_quit_var = true;
             return true;
         }
     }
@@ -83,6 +85,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
         if (Game::map_change_array[*current_flor][0] == -1)
         {
             this->view->display_quit();
+            this->view->display_quit_var = true;
             return true;
         }
     }
@@ -91,6 +94,7 @@ bool Player::check_if_not_exit(int next_x, int next_y)
         if (Game::map_change_array[*current_flor][2] == -1)
         {
             this->view->display_quit();
+            this->view->display_quit_var = true;
             return true;
         }
     }

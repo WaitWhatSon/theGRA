@@ -11,6 +11,7 @@ class View
 {
     public:
         Window* window;
+        bool display_quit_var;
 
         /** Default constructor */
         View();

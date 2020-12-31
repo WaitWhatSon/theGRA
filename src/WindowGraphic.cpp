@@ -13,6 +13,8 @@ using namespace sf;
 
 sf::Font font;
 
+sf::Texture texture_player;
+sf::Sprite player;
 
 WindowGraphic::WindowGraphic(sf::RenderWindow& _win):win(_win)
 {
@@ -27,6 +29,9 @@ WindowGraphic::WindowGraphic(sf::RenderWindow& _win):win(_win)
         std::cout << "font not loaded";
         exit(-1);
     }
+
+    if (!texture_player.loadFromFile("files/player.png")) exit -1;
+    player.setTexture(texture_player);
 }
 
 WindowGraphic::~WindowGraphic()
@@ -41,38 +46,29 @@ int WindowGraphic::get_ch()
 
 int WindowGraphic::add_ch(int x, int y, char c)
 {
-    CircleShape shape(5.f);
-
-    if( c == 'r' )
+    if ( c == 'b' ) // menu choice
     {
-        shape.setFillColor(Color::Red);
-        shape.setPosition(y, x);
-    }
-    else if ( c == 'b' )
-    {
+        CircleShape shape(10.f);
         shape.setFillColor(Color::Blue);
         shape.setPosition(y, x);
+        win.draw(shape);
     }
-    else if ( c == '@' )
+    else if ( c == '@' ) // player
     {
-        RectangleShape rect;
-        rect.setSize(Vector2f(9, 18));
-        rect.setFillColor(Color::Green);
-        rect.setPosition(y, x);
-        win.draw(rect);
-        return 0;
+        //RectangleShape rect;
+        //rect.setSize(Vector2f(9, 18));
+        //rect.setFillColor(Color::Green);
+        //rect.setPosition(y, x);
+        //win.draw(rect);
+        CircleShape shape(15.f);
+        shape.setOutlineThickness(3.f);
+        shape.setOutlineColor(sf::Color::Green);
+        shape.setFillColor(Color(0,0,0,0));
+        shape.setPosition(y-10, x-6);
+        win.draw(shape);
+        player.setPosition(y, x);
+        win.draw(player);
     }
-    else if ( c == '#' )
-    {
-        shape.setFillColor(Color::Yellow);
-        shape.setPosition(y, x);
-    }
-    else
-    {
-        shape.setFillColor(Color::Magenta);
-        shape.setPosition(y, x);
-    }
-    win.draw(shape);
     return 0;
 }
 
@@ -92,16 +88,30 @@ int WindowGraphic::add_str_colour(int x, int y, const char* s, int colour)
     if(colour == 'r')
     {
         text.setFillColor(sf::Color::Red);
-        //text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     }
-    else if(colour == 'g')
+     else if(colour == 'g')
     {
         text.setStyle(sf::Text::Bold);
         text.setFillColor(sf::Color::Green);
     }
-    else if(colour == 'b')
+    else if(colour == 'w')
     {
-        text.setFillColor(sf::Color::Black);
+        text.setStyle(sf::Text::Bold);
+        text.setFillColor(sf::Color::White);
+    }
+    else if(colour == 'q') // game over case
+    {
+        RectangleShape rect{Vector2f(197, 60)};
+        rect.setFillColor(Color::Black);
+        rect.setPosition(y, x);
+        win.draw(rect);
+
+        text.setCharacterSize(30);
+        text.setFillColor(sf::Color::Red);
+        text.setStyle(sf::Text::Bold);
+        text.setPosition(y+10, x+10);
+        win.draw(text);
+        return 0;
     }
     text.setPosition(y, x);
     win.draw(text);
@@ -123,11 +133,10 @@ void WindowGraphic::window_clear()
 
 void WindowGraphic::get_str(char* name, int i)
 {
-     //unused
+     return; //unused
 }
 
 void WindowGraphic::window_destroy()
 {
-    win.setVisible(false);
-    //win.close();
+    win.setVisible(false); //win.close();
 }

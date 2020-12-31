@@ -3,6 +3,9 @@
 std::atomic<bool> x (1);
 std::atomic<bool> restart_clock (1);
 
+std::atomic<int> decSecG (1);
+std::atomic<int> secG (1);
+
 // tekstury tła //
 sf::Texture background_texture;
 sf::Sprite background;
@@ -12,15 +15,18 @@ sf::Sprite map_sprite;
 
 int mode;
 
-void foo(View* view, Window* window)
+void fooTimer(View* view, Window* window)
 {
     for (int i = 160; i >= 0; i--)
     {
         usleep(100000);
-        view->clockUpdate((i/100)+48, ((i/10)%10)+48); // aktualizuj zegar
+        decSecG = i/100;
+        secG = (i/10)%10;
+
+        if(!mode) view->clockUpdate(decSecG+48, secG+48); // aktualizuj zegar
         if(!x)
         {
-            view->clockUpdate(0+48, 0+48);
+            if(!mode) view->clockUpdate(0+48, 0+48);
             return;
         }
         if (restart_clock)
@@ -29,8 +35,11 @@ void foo(View* view, Window* window)
             restart_clock = false;
         }
     }
-    view->clockUpdate(0+48, 0+48);
-    view->gameOver();
+    if(!mode)
+    {
+        view->clockUpdate(0+48, 0+48);
+        view->gameOver();
+    }
     x = false;
 }
 
@@ -164,7 +173,7 @@ void Game::setup_window()
 
 void Game::play_game()
 {
-    std::thread thread_clock(foo, view, gameWindow);
+    std::thread thread_clock(fooTimer, view, gameWindow);
     view->gameBar();
 
     // variables for game //
@@ -272,10 +281,6 @@ void Game::play_game()
                         goal_y = Game::rooms_coordinates[i][3];
                     }
                 }
-
-                view->gameBarUpdate(semester, courses[course].get_name().c_str(),
-                                    to_string(courses[course].get_room()).c_str(),
-                                    week, player->get_player_score());
                 sth_changed = false;
             }
 
@@ -305,7 +310,6 @@ void Game::play_game()
                 map_sprite.setTexture(maps_textures[current_map]);
                 map_changed = false;
             }
-
             if (player->goal)
             {
                 add_points(1, &sth_changed);
@@ -314,14 +318,37 @@ void Game::play_game()
             }
             // clear the window with black color
             this->win.clear(sf::Color::Black);
-
+            // draw game
             this->win.draw(map_sprite);
-            view->gameBar();
-            view->mapFragmentUpdate(player->get_old_x(), player->get_old_y(),
-                                    maps[current_map][player->get_old_y()][player->get_old_x()]);
+            view->gameBarUpdate(semester, courses[course].get_name().c_str(),
+                 to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
             view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
-
+            if(this->view->display_quit_var) {view->display_quit();}
+            view->clockUpdate(decSecG, secG);
+            // display
             this->win.display();
+        }
+        x = 1;
+        // wyrysowanie tła do gameover
+        this->win.clear(sf::Color::Black);
+        // draw game
+        this->win.draw(map_sprite);
+        view->gameBarUpdate(semester, courses[course].get_name().c_str(),
+                 to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
+        view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
+        if(this->view->display_quit_var) {view->display_quit();}
+        this->view->gameOver();
+        // display
+        this->win.display();
+        while (this->win.isOpen() && x)
+        {
+            // check all the window's events that were triggered since the last iteration of the loop
+            sf::Event event;
+            while (this->win.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed){this->win.close();}
+                else if(event.type == sf::Event::KeyPressed){ x=0; }
+            }
         }
     }
     thread_clock.join();

@@ -29,6 +29,7 @@ MenuGraphic::MenuGraphic(View* _view, int* _mode, int* _quit, sf::RenderWindow& 
 
     background_menu.setTexture(texture_background);
     logo.setTexture(texture_logo);
+    logo.setPosition(205, 35);
 }
 
 using namespace sf;
