@@ -193,8 +193,8 @@ void Game::play_game()
                 course++;
                 if (course >= courses.size())
                 {
-                    courses = allCourses->get_random_courses_list(semester);
-                    course = 0;
+                    //courses = allCourses->get_random_courses_list(semester);
+                    //course = 0;
                     week++;
                     if (week > 15)
                     {
@@ -204,8 +204,11 @@ void Game::play_game()
                         {
                             // GAME OVER
                             x = false;
+                            break;
                         }
                     }
+                    courses = allCourses->get_random_courses_list(semester);
+                    course = 0;
                 }
 
                 for (int i = 0; i < 13; i++)
@@ -257,8 +260,8 @@ void Game::play_game()
                 course++;
                 if (course >= courses.size())
                 {
-                    courses = allCourses->get_random_courses_list(semester);
-                    course = 0;
+                    //courses = allCourses->get_random_courses_list(semester);
+                    //course = 0;
                     week++;
                     if (week > 15)
                     {
@@ -268,8 +271,11 @@ void Game::play_game()
                         {
                             // GAME OVER
                             x = false;
+                            break;
                         }
                     }
+                    courses = allCourses->get_random_courses_list(semester);
+                    course = 0;
                 }
 
                 for (int i = 0; i < 13; i++)

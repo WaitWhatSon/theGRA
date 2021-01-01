@@ -58,6 +58,7 @@ void MenuGraphic::run_menu()
         {
             if (event.type == sf::Event::Closed)
             {
+                *(this->quit) = 1;
                 this->win.close();
             }
             else if(event.type == sf::Event::KeyPressed)
@@ -70,6 +71,27 @@ void MenuGraphic::run_menu()
                 else if (event.key.code == sf::Keyboard::C)     controls_display();
                 else if (event.key.code == sf::Keyboard::X)     quit_game();
             }
+            else if (event.type == sf::Event::MouseMoved)
+            {
+                if (event.mouseMove.x>=100 && event.mouseMove.x<=240 &&
+                    event.mouseMove.y>=200 && event.mouseMove.y<=225){position=0;}
+                else if (event.mouseMove.x>=100 && event.mouseMove.x<=275 &&
+                         event.mouseMove.y>=250 && event.mouseMove.y<=275){position=1;}
+                else if (event.mouseMove.x>=100 && event.mouseMove.x<=235 &&
+                         event.mouseMove.y>=300 && event.mouseMove.y<=325){position=2;}
+                else if (event.mouseMove.x>=100 && event.mouseMove.x<=175 &&
+                         event.mouseMove.y>=350 && event.mouseMove.y<=375){position=3;}
+            }
+            else if (event.type == sf::Event::MouseButtonPressed)
+                {
+                        while(event.type != sf::Event::MouseButtonReleased)
+                        {
+                            this->win.pollEvent(event);
+                            if (event.type == sf::Event::MouseButtonReleased){get_choice();}
+                            else if (event.type == sf::Event::MouseButtonPressed &&
+                                     event.mouseButton.button == sf::Mouse::Right){break;}
+                        }
+                }
         }
         // clear the window with black color
         this->win.clear(sf::Color::Black);

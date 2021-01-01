@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-    int mode = 1;
+    int mode = 0;
     // tryb: 0 -> tekstowy, 1 -> graficzny
     int quit = 0;
     // 0 -> graj, 1-> wylacz
@@ -65,5 +65,6 @@ int main()
     }
 
     cout << "SEE YOU LATER!\n";
+    cout << "\npodziekowania dla Krystka za pomoc w przerysowaniu map.";
 }
 
