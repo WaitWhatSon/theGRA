@@ -115,6 +115,9 @@ void Game::choose_player_name()
                 if (event.type == sf::Event::Closed)
                 {
                     this->win.close();
+                    x = 0;
+                    std::cout << "BYE";
+                    return;
                 }
                 else if(event.type == sf::Event::KeyPressed)
                 {

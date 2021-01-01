@@ -18,6 +18,7 @@ WindowText::WindowText()
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
     this->win = newwin(yMax,xMax,0,0);
+    // nazwe ikna i ikonke
     keypad(win, true);
     curs_set(0);
     refresh();

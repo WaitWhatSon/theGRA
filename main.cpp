@@ -1,3 +1,5 @@
+#include <windows.h>
+
 #include "Menu.h"
 #include "MenuText.h"
 #include "MenuGraphic.h"
@@ -25,7 +27,15 @@ int main()
     View* view_pointer;     // widok
     Menu* menu;             // meni
 
+    //ikonka
+    sf::Image image;
+    image.loadFromFile( "files/player.png" );
+
+    SetConsoleTitle("TheGRA");
+
+
     sf::RenderWindow window(sf::VideoMode(713,400), "TheGRA");
+    window.setIcon( image.getSize().x, image.getSize().y, image.getPixelsPtr() );
     window.setVisible(false);
 
     int old_mode = mode;

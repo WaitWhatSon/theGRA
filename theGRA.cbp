@@ -73,6 +73,9 @@
 		<Unit filename="include/WindowGraphic.h" />
 		<Unit filename="include/WindowText.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/Course.cpp" />
 		<Unit filename="src/CoursesList.cpp" />
 		<Unit filename="src/Game.cpp" />
