@@ -50,6 +50,7 @@ void MenuGraphic::run_menu()
     */
 
     // run the program as long as the window is open
+    int display = 1;
     while (this->win.isOpen() && this->loop)
     {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -70,29 +71,33 @@ void MenuGraphic::run_menu()
                 else if (event.key.code == sf::Keyboard::M)     change_mode();
                 else if (event.key.code == sf::Keyboard::C)     controls_display();
                 else if (event.key.code == sf::Keyboard::X)     quit_game();
+                display = 1;
             }
             else if (event.type == sf::Event::MouseMoved)
             {
                 if (event.mouseMove.x>=100 && event.mouseMove.x<=240 &&
-                    event.mouseMove.y>=200 && event.mouseMove.y<=225){position=0;}
+                    event.mouseMove.y>=200 && event.mouseMove.y<=225){position=0; display = 1;}
                 else if (event.mouseMove.x>=100 && event.mouseMove.x<=275 &&
-                         event.mouseMove.y>=250 && event.mouseMove.y<=275){position=1;}
+                         event.mouseMove.y>=250 && event.mouseMove.y<=275){position=1; display = 1;}
                 else if (event.mouseMove.x>=100 && event.mouseMove.x<=235 &&
-                         event.mouseMove.y>=300 && event.mouseMove.y<=325){position=2;}
+                         event.mouseMove.y>=300 && event.mouseMove.y<=325){position=2; display = 1;}
                 else if (event.mouseMove.x>=100 && event.mouseMove.x<=175 &&
-                         event.mouseMove.y>=350 && event.mouseMove.y<=375){position=3;}
+                         event.mouseMove.y>=350 && event.mouseMove.y<=375){position=3; display = 1;}
             }
             else if (event.type == sf::Event::MouseButtonPressed)
-                {
-                        while(event.type != sf::Event::MouseButtonReleased)
-                        {
-                            this->win.pollEvent(event);
-                            if (event.type == sf::Event::MouseButtonReleased){get_choice();}
-                            else if (event.type == sf::Event::MouseButtonPressed &&
-                                     event.mouseButton.button == sf::Mouse::Right){break;}
-                        }
-                }
+            {
+                    while(event.type != sf::Event::MouseButtonReleased)
+                    {
+                        this->win.pollEvent(event);
+                        if (event.type == sf::Event::MouseButtonReleased){get_choice();}
+                        else if (event.type == sf::Event::MouseButtonPressed &&
+                                event.mouseButton.button == sf::Mouse::Right){display = 1; break;}
+                    }
+            }
+            else if (event.type == sf::Event::Resized){display = 1;}
         }
+        if(display)
+        {
         // clear the window with black color
         this->win.clear(sf::Color::Black);
         this->win.draw(background_menu);
@@ -102,6 +107,9 @@ void MenuGraphic::run_menu()
         this->view->menu_move_up_clear(this->position);
         // end the current frame
         this->win.display();
+        display = 0;
+        //std::cout << "display";
+        }
     }
     return;
 }

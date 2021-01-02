@@ -104,6 +104,7 @@ void Game::choose_player_name()
     }
     else    /** GRAFICZNY **/
     {
+        int display = 1;
         if (!background_texture.loadFromFile("files/background_photo.png")) exit -1;
         background.setTexture(background_texture);
         while (this->win.isOpen())
@@ -124,6 +125,7 @@ void Game::choose_player_name()
                     if(event.key.code == sf::Keyboard::Backspace)
                     {
                         temp_name = temp_name.substr(0, temp_name.size()-1);
+                        display = 1;
                     }
                     else if(event.key.code == sf::Keyboard::Enter)
                     {
@@ -144,16 +146,22 @@ void Game::choose_player_name()
                         if (choice >= ' ' && choice <= '{' && choice != '\\' && choice != ' ')
                         {
                             temp_name += choice;
+                            display = 1;
                         }
                     }
                 }
+                else if (event.type == sf::Event::Resized){display = 1;}
             }
             // clear the window with black color
-            this->win.clear(sf::Color::Black);
-            this->win.draw(background);
-            view->playerNameChoice();
-            view->updatePlayerName(temp_name);
-            this->win.display();
+            if(display)
+            {
+                this->win.clear(sf::Color::Black);
+                this->win.draw(background);
+                view->playerNameChoice();
+                view->updatePlayerName(temp_name);
+                this->win.display();
+                display = 0;
+            }
         }
     }
 }
@@ -256,6 +264,8 @@ void Game::play_game()
     }
     else /** GRAFICZNY **/
     {
+        int oldSec = secG;
+        int display = 1;
         while (this->win.isOpen() && x)
         {
             if(sth_changed)
@@ -292,6 +302,11 @@ void Game::play_game()
                 }
                 sth_changed = false;
             }
+            if (oldSec != secG)
+            {
+                display = 1;
+                oldSec = secG;
+            }
 
             // check all the window's events that were triggered since the last iteration of the loop
             sf::Event event;
@@ -311,7 +326,9 @@ void Game::play_game()
                     else if(event.key.code == sf::Keyboard::S) this->player->prev_floor();
                     else if(event.key.code == sf::Keyboard::A) this->player->check_position();
                     else if(event.key.code == sf::Keyboard::X) x = false;
+                    display = 1;
                 }
+                else if(event.type == sf::Event::Resized) {display = 1;}
             }
             if (map_changed)
             {
@@ -325,30 +342,24 @@ void Game::play_game()
                 restart_clock = true;
                 player->goal = false;
             }
-            // clear the window with black color
-            this->win.clear(sf::Color::Black);
-            // draw game
-            this->win.draw(map_sprite);
-            view->gameBarUpdate(semester, courses[course].get_name().c_str(),
-                 to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
-            view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
-            if(this->view->display_quit_var) {view->display_quit();}
-            view->clockUpdate(decSecG, secG);
-            // display
-            this->win.display();
+            if(display)
+            {
+                // clear the window with black color
+                this->win.clear(sf::Color::Black);
+                // draw game
+                this->win.draw(map_sprite);
+                view->gameBarUpdate(semester, courses[course].get_name().c_str(),
+                     to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
+                view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
+                if(this->view->display_quit_var) {view->display_quit();}
+                view->clockUpdate(decSecG, secG);
+                // display
+                this->win.display();
+                display = 0;
+            }
         }
         x = 1;
-        // wyrysowanie tła do gameover
-        this->win.clear(sf::Color::Black);
-        // draw game
-        this->win.draw(map_sprite);
-        view->gameBarUpdate(semester, courses[course].get_name().c_str(),
-                 to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
-        view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
-        if(this->view->display_quit_var) {view->display_quit();}
-        this->view->gameOver();
-        // display
-        this->win.display();
+        display = 1;
         while (this->win.isOpen() && x)
         {
             // check all the window's events that were triggered since the last iteration of the loop
@@ -357,6 +368,21 @@ void Game::play_game()
             {
                 if (event.type == sf::Event::Closed){this->win.close();}
                 else if(event.type == sf::Event::KeyPressed){ x=0; }
+                else if(event.type == sf::Event::Resized){display = 1;}
+            }
+            if(display)
+            {
+                this->win.clear(sf::Color::Black);
+                // draw game
+                this->win.draw(map_sprite);
+                view->gameBarUpdate(semester, courses[course].get_name().c_str(),
+                         to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
+                view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
+                if(this->view->display_quit_var) {view->display_quit();}
+                this->view->gameOver();
+                // display
+                this->win.display();
+                display = 0;
             }
         }
     }
