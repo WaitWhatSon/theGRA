@@ -14,7 +14,11 @@
 #include "ViewText.h"
 #include "ViewGraphic.h"
 
+#include "Common.h"
+
 using namespace std;
+
+bool music_on;
 
 int main()
 {
@@ -22,6 +26,8 @@ int main()
     // tryb: 0 -> tekstowy, 1 -> graficzny
     int quit = 0;
     // 0 -> graj, 1-> wylacz
+
+    music_on = true;
 
     Window* window_pointer; // okno
     View* view_pointer;     // widok

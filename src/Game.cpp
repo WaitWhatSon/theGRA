@@ -1,4 +1,8 @@
+#include <SFML/Audio.hpp>
+
 #include "Game.h"
+
+#include "Common.h"
 
 std::atomic<bool> x (1);
 std::atomic<bool> restart_clock (1);
@@ -13,7 +17,21 @@ sf::Sprite background;
 sf::Texture maps_textures[10];
 sf::Sprite map_sprite;
 
+// muzyczki //
+sf::SoundBuffer buffer_game;
+sf::Sound bad_game;
+
+sf::SoundBuffer buffer2_game;
+sf::Sound good_game;
+
+sf::Music music_game;
+sf::Music game_over;
+sf::Music game_success;
+
 int mode;
+
+int cheater_mode = 0;
+int weeks_number = 15;
 
 void fooTimer(View* view, Window* window)
 {
@@ -40,7 +58,16 @@ void fooTimer(View* view, Window* window)
         view->clockUpdate(0+48, 0+48);
         view->gameOver();
     }
+    if(music_on)music_game.stop();
+    if(music_on)game_over.play();
     x = false;
+}
+
+void cheater_mode_check()
+{
+    cheater_mode = (cheater_mode+1)%2;
+    if(cheater_mode) { weeks_number = 1; }
+    else { weeks_number = 15; }
 }
 
 bool Game::map_changed = false;
@@ -71,6 +98,26 @@ Game::Game(View* view_pointer, int _best_score, sf::RenderWindow& win, int _mode
     {
         load_maps_graphic();
     }
+
+    if (!buffer_game.loadFromFile("files/music/bad.wav"))
+        exit -1;
+    bad_game.setBuffer(buffer_game);
+
+    if (!buffer2_game.loadFromFile("files/music/good.wav"))
+        exit -1;
+    good_game.setBuffer(buffer2_game);
+
+    if (!music_game.openFromFile("files/music/music_game.wav"))
+        exit -1;
+
+    if (!game_over.openFromFile("files/music/game_over.wav"))
+        exit -1;
+
+    if (!game_success.openFromFile("files/music/game_success.wav"))
+        exit -1;
+
+    music_game.setLoop(true);
+    if(music_on)music_game.play();
 }
 
 void Game::choose_player_name()
@@ -115,6 +162,7 @@ void Game::choose_player_name()
             {
                 if (event.type == sf::Event::Closed)
                 {
+                    if(music_on)music_game.stop();
                     this->win.close();
                     x = 0;
                     std::cout << "BYE";
@@ -132,6 +180,7 @@ void Game::choose_player_name()
                         if(!temp_name.empty())
                         {
                             player->set_name(temp_name);
+                            if(music_on)good_game.play();
                             return;
                         }
                     }
@@ -276,13 +325,15 @@ void Game::play_game()
                     //courses = allCourses->get_random_courses_list(semester);
                     //course = 0;
                     week++;
-                    if (week > 15)
+                    if (week > weeks_number)
                     {
                         week = 1;
                         semester++;
                         if (semester > 5)
                         {
                             // GAME OVER
+                            if(music_on)music_game.stop();
+                            if(music_on)game_success.play();
                             x = false;
                             break;
                         }
@@ -314,7 +365,8 @@ void Game::play_game()
             {
                 if (event.type == sf::Event::Closed)
                 {
-                this->win.close();
+                    if(music_on)music_game.stop();
+                    this->win.close();
                 }
                 else if(event.type == sf::Event::KeyPressed)
                 {
@@ -325,7 +377,9 @@ void Game::play_game()
                     else if(event.key.code == sf::Keyboard::W) this->player->next_floor();
                     else if(event.key.code == sf::Keyboard::S) this->player->prev_floor();
                     else if(event.key.code == sf::Keyboard::A) this->player->check_position();
-                    else if(event.key.code == sf::Keyboard::X) x = false;
+                    else if(event.key.code == sf::Keyboard::D) cheater_mode_check();
+                    else if(event.key.code == sf::Keyboard::X) {if(music_on)music_game.stop(); if(music_on)game_over.play(); x = false;}
+                    else if (event.key.code == sf::Keyboard::N){if(music_on){music_on = false; music_game.stop();} else{music_on = true; music_game.play();}}
                     display = 1;
                 }
                 else if(event.type == sf::Event::Resized) {display = 1;}
@@ -353,6 +407,8 @@ void Game::play_game()
                 view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
                 if(this->view->display_quit_var) {view->display_quit();}
                 view->clockUpdate(decSecG, secG);
+                if(cheater_mode){view->window->add_ch(360, 30, 'd');}
+                if(!music_on){view->window->add_ch(360, 675, 'n');}
                 // display
                 this->win.display();
                 display = 0;
@@ -375,10 +431,23 @@ void Game::play_game()
                 this->win.clear(sf::Color::Black);
                 // draw game
                 this->win.draw(map_sprite);
-                view->gameBarUpdate(semester, courses[course].get_name().c_str(),
+                if(semester >= 6)
+                {
+                    this->view->window->add_str_colour(325, 260, "CONGRATULATIONS!!!" , 'g');
+                    string info = "Your final score: ";
+                    const char * score = ((info + std::to_string(this->player->get_player_score()))).c_str();
+                    this->view->window->add_str_colour(350, 265, score, 'g');
+
+                    string titled_name = "inz." + this->player->get_player_name();
+                    this->player->set_name(titled_name);
+                }
+                else
+                {
+                    view->gameBarUpdate(semester, courses[course].get_name().c_str(),
                          to_string(courses[course].get_room()).c_str(),week, player->get_player_score());
+                }
                 view->playerPositionUpdate(player->get_x(), player->get_y(), '@');
-                if(this->view->display_quit_var) {view->display_quit();}
+                //if(this->view->display_quit_var) {view->display_quit();}
                 this->view->gameOver();
                 // display
                 this->win.display();

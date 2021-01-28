@@ -1,5 +1,18 @@
+#include <SFML/Audio.hpp>
+
 #include "Player.h"
 #include "Game.h"
+
+#include "Common.h"
+
+sf::SoundBuffer buffer_player;
+sf::Sound step;
+
+sf::SoundBuffer buffer2_player;
+sf::Sound not_step;
+
+sf::SoundBuffer buffer3_player;
+sf::Sound point;
 
 Player::Player (View* _view, int _yc, int _xc, char _c, char** _cmap,
                 int* _goal_x, int* _goal_y, int* _goal_map, int* _flor)
@@ -22,14 +35,32 @@ Player::Player (View* _view, int _yc, int _xc, char _c, char** _cmap,
     current_flor = _flor;
 
     goal = false;
+
+    if (!buffer_player.loadFromFile("files/music/step.wav"))
+        exit -1;
+    step.setBuffer(buffer_player);
+
+    if (!buffer2_player.loadFromFile("files/music/not_step.wav"))
+        exit -1;
+    not_step.setBuffer(buffer2_player);
+
+    if (!buffer3_player.loadFromFile("files/music/good.wav"))
+        exit -1;
+    point.setBuffer(buffer3_player);
 }
 
 bool Player::check_if_not_wall(char character)
 {
     if (character == '#')
+    {
+        if(music_on)not_step.play();
         return false;
+    }
     else
+    {
+        if(music_on)step.play();
         return true;
+    }
 }
 
 void Player::check_if_change_map(int next_x, int next_y)
@@ -271,6 +302,7 @@ void Player::set_current_map(char** cmap)
 void Player::add_points(int points)
 {
     this->player_score += points;
+    if(music_on)point.play();
 }
 
 int Player::get_player_score()

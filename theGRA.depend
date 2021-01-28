@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1609511765 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
+1611837744 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\main.cpp
 	<windows.h>
 	"Menu.h"
 	"MenuText.h"
@@ -11,6 +11,7 @@
 	"View.h"
 	"ViewText.h"
 	"ViewGraphic.h"
+	"Common.h"
 
 1549075040 c:\pdcurs34\curses.h
 	<stdarg.h>
@@ -28,9 +29,11 @@
 	<string>
 	<cstring>
 
-1609364081 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
+1611838604 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\player.cpp
+	<SFML/Audio.hpp>
 	"Player.h"
 	"Game.h"
+	"Common.h"
 
 1603299940 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\map.cpp
 	"Map.h"
@@ -81,8 +84,10 @@
 1609190861 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menu.cpp
 	"Menu.h"
 
-1609600661 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+1611839063 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\game.cpp
+	<SFML/Audio.hpp>
 	"Game.h"
+	"Common.h"
 
 1609363061 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\game.h
 	<iostream>
@@ -157,7 +162,7 @@
 1609512989 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowtext.cpp
 	"WindowText.h"
 
-1609436698 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
+1611838945 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\windowgraphic.cpp
 	"WindowGraphic.h"
 	<unistd.h>
 	<stdio.h>
@@ -581,13 +586,15 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1609599436 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menugraphic.cpp
+1611838279 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\src\menugraphic.cpp
 	"MenuGraphic.h"
 	"WindowGraphic.h"
+	"Common.h"
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	<iostream>
 
-1609193505 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menugraphic.h
+1611837397 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\menugraphic.h
 	<fstream>
 	<string.h>
 	"Menu.h"
@@ -606,4 +613,110 @@
 	"View.h"
 
 1609512535 source:c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\resources.rc
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/OutputSoundFile.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundFileFactory.hpp>
+	<SFML/Audio/SoundFileReader.hpp>
+	<SFML/Audio/SoundFileWriter.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\inputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<algorithm>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Mutex.hpp>
+	<cstdlib>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Vector3.hpp>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\alresource.hpp
+	<SFML/Audio/Export.hpp>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\outputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<string>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<vector>
+	<string>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundfilefactory.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+	<vector>
+	<SFML/Audio/SoundFileFactory.inl>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundfilefactory.inl
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundfilereader.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+
+1525808418 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\sfml-2.5.1\include\sfml\audio\soundfilewriter.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+
+1611837708 c:\users\sherlokc\desktop\koronalia\kaceka\thegra\thegra\include\common.h
 

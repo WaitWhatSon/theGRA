@@ -1,17 +1,30 @@
 #include "MenuGraphic.h"
 #include "WindowGraphic.h"
 
+#include "Common.h"
+
 #define SFML_STATIC
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <iostream>
 
+/* muzyczki ze strony: */
+/* https://freesound.org/search/ */
 
 sf::Texture texture_background;
 sf::Texture texture_logo;
 
 sf::Sprite background_menu;
 sf::Sprite logo;
+
+sf::SoundBuffer buffer;
+sf::Sound bad;
+
+sf::SoundBuffer buffer2;
+sf::Sound good;
+
+sf::Music music;
 
 MenuGraphic::MenuGraphic(View* _view, int* _mode, int* _quit, sf::RenderWindow& win):win(win)
 {
@@ -30,6 +43,22 @@ MenuGraphic::MenuGraphic(View* _view, int* _mode, int* _quit, sf::RenderWindow& 
     background_menu.setTexture(texture_background);
     logo.setTexture(texture_logo);
     logo.setPosition(205, 35);
+
+    if (!buffer.loadFromFile("files/music/bad.wav"))
+        exit -1;
+    bad.setBuffer(buffer);
+
+    if (!buffer2.loadFromFile("files/music/good.wav"))
+        exit -1;
+    good.setBuffer(buffer2);
+
+    if (!music.openFromFile("files/music/menu_music.wav"))
+        exit -1;
+
+    //music_on = false;
+
+    music.setLoop(true);
+    if(music_on) music.play();
 }
 
 using namespace sf;
@@ -60,15 +89,17 @@ void MenuGraphic::run_menu()
             if (event.type == sf::Event::Closed)
             {
                 *(this->quit) = 1;
+                music.stop();
                 this->win.close();
             }
             else if(event.type == sf::Event::KeyPressed)
             {
-                if      (event.key.code == sf::Keyboard::Up)    move_up();
+                if      (event.key.code == sf::Keyboard::Up)    {move_up();}
                 else if (event.key.code == sf::Keyboard::Down)  move_down();
                 else if (event.key.code == sf::Keyboard::Enter) get_choice();
                 else if (event.key.code == sf::Keyboard::P)     play_game();
                 else if (event.key.code == sf::Keyboard::M)     change_mode();
+                else if (event.key.code == sf::Keyboard::N)     {if(music_on){music_on = false; music.stop();} else{music_on = true; music.play();}}
                 else if (event.key.code == sf::Keyboard::C)     controls_display();
                 else if (event.key.code == sf::Keyboard::X)     quit_game();
                 display = 1;
@@ -132,10 +163,12 @@ void MenuGraphic::move_up()
 {
     if(this->position <= 0)
     {
+        if(music_on)bad.play();
         return; // wy¿ej sie nie da
     }
     else
     {
+        if(music_on)good.play();
         this->position--;
     }
 }
@@ -144,10 +177,12 @@ void MenuGraphic::move_down()
 {
     if(this->position >= 3)
     {
+        if(music_on)bad.play();
         return; // ni¿ej sie nie da
     }
     else
     {
+        if(music_on)good.play();
         this->position++;
     }
 }
@@ -156,6 +191,7 @@ void MenuGraphic::quit_game()
 {
     *(this->quit) = 1;
     this->loop = 0;
+    if(music_on)music.stop();
 
     this->win.close();
 }
@@ -163,16 +199,19 @@ void MenuGraphic::quit_game()
 void MenuGraphic::play_game()
 {
     this->loop = 0;
+    if(music_on)music.stop();
 }
 
 void MenuGraphic::change_mode()
 {
     *(this->mode) = (*(this->mode)+1) %2;
     this->loop = 0;
+    if(music_on)music.stop();
 }
 
 void MenuGraphic::controls_display()
 {
+    if(music_on)good.play();
     this->win.clear(sf::Color::Black);
     this->win.draw(background_menu);
     this->view->controls_display();
@@ -192,6 +231,8 @@ void MenuGraphic::controls_display()
             else if(event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::X) escape=1;
+                else if (event.key.code == sf::Keyboard::N)     {if(music_on){music_on = false; music.stop();} else{music_on = true; music.play();}}
+                if(music_on) good.play();
             }
         }
     }

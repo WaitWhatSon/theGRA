@@ -16,6 +16,9 @@ sf::Font font;
 sf::Texture texture_player;
 sf::Sprite player;
 
+sf::Texture texture_music_off;
+sf::Sprite music_off;
+
 WindowGraphic::WindowGraphic(sf::RenderWindow& _win):win(_win)
 {
     win.setVisible(true);
@@ -32,6 +35,9 @@ WindowGraphic::WindowGraphic(sf::RenderWindow& _win):win(_win)
 
     if (!texture_player.loadFromFile("files/player.png")) exit -1;
     player.setTexture(texture_player);
+
+    if (!texture_music_off.loadFromFile("files/musicoff.png")) exit -1;
+    music_off.setTexture(texture_music_off);
 }
 
 WindowGraphic::~WindowGraphic()
@@ -70,6 +76,24 @@ int WindowGraphic::add_ch(int x, int y, char c)
         win.draw(shape);
         player.setPosition(y, x);
         win.draw(player);
+    }
+    else if ( c == 'd' )
+    {
+        CircleShape shape(15.f);
+        shape.setFillColor(sf::Color::Red);
+        shape.setPosition(y-10, x-6);
+        win.draw(shape);
+        player.setPosition(y, x);
+        win.draw(player);
+    }
+    else if ( c == 'n' )
+    {
+        CircleShape shape(15.f);
+        shape.setFillColor(sf::Color::Blue);
+        shape.setPosition(y-6, x-6);
+        win.draw(shape);
+        music_off.setPosition(y, x);
+        win.draw(music_off);
     }
     return 0;
 }
