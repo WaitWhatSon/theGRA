@@ -115,6 +115,7 @@ const void ViewGraphic::controls_display()
     this->window->add_str_colour(300,  300, "A", 'g');
     this->window->add_str(350, 260, "back to menu");
     this->window->add_str_colour(350,  430, "X", 'g');
+    this->window->add_str_colour(350,  500, "sound on/of  N", 'g');
 }
 
 const void ViewGraphic::menu_move_up_clear(int position)

@@ -136,6 +136,7 @@ void MenuGraphic::run_menu()
         this->view->display_options(this->position, this->best_player, this->best_score);
         this->view->menu_move_up_draw(this->position);
         this->view->menu_move_up_clear(this->position);
+        if(!music_on){view->window->add_ch(360, 675, 'n');}
         // end the current frame
         this->win.display();
         display = 0;

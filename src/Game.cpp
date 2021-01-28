@@ -208,6 +208,7 @@ void Game::choose_player_name()
                 this->win.draw(background);
                 view->playerNameChoice();
                 view->updatePlayerName(temp_name);
+                if(!music_on){view->window->add_ch(360, 675, 'n');}
                 this->win.display();
                 display = 0;
             }

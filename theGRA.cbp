@@ -24,6 +24,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add library="C:/pdcurs34/wincon/pdcurses.a" />
+					<Add library="sfml-audio-d" />
 					<Add directory="c:/pdcurs34/win32" />
 					<Add directory="c:/pdcurs34" />
 					<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/lib" />
@@ -43,6 +44,8 @@
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-network" />
 				</Linker>
 			</Target>
 		</Build>
@@ -58,6 +61,7 @@
 			<Add library="sfml-system" />
 			<Add directory="C:/Users/SHERLOKC/Desktop/KORONALIA/KaCeKa/theGRA/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="include/Common.h" />
 		<Unit filename="include/Course.h" />
 		<Unit filename="include/CoursesList.h" />
 		<Unit filename="include/Game.h" />
