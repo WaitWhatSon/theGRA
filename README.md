@@ -34,3 +34,6 @@ https://invisible-island.net/ncurses/ (do trybu tekstowego)
 
 https://www.sfml-dev.org/ (do działania trybu graficznego)
 
+------------------
+
+- [ ] (zarządzanie pamięcią nadal niedopracowane)
