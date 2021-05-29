@@ -37,3 +37,4 @@ https://www.sfml-dev.org/ (do działania trybu graficznego)
 ------------------
 
 - [ ] (zarządzanie pamięcią nadal niedopracowane)
+- [ ] (opracowanie dokumentacji o instalacji)
